@@ -1,0 +1,34 @@
+.boby-menu{
+    width: 20%;
+    float: left;
+}
+
+.body-itemshow{
+    width: 80%;
+    float: right;
+}
+
+.item-filter{
+    text-align: end;
+}
+
+.item-filter div{
+    display: inline-block;
+    margin: 10px;
+}
+
+.menu-category{
+    margin-top: 40px;
+}
+
+.menu-category ul li {
+    list-style: none;
+    margin: 10px 30px;
+    font-weight: 400;
+}
+
+.boby-menu span{
+    margin-left : 15%;
+    font-weight: 500;
+    font-size: 150%;
+}
