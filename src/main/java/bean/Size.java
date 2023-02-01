@@ -5,7 +5,11 @@ public enum Size {
 	M,
 	L,
 	XL,
-	XXL,
+	XXL;
+	
+	public Catalory getvalue ( int catelogy) {
+		return Catalory.values()[catelogy];
+	}
 	
 
 }

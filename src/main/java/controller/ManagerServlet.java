@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Catalory;
 import bean.Item;
+import bean.Item1;
 import bean.User;
 import dao.ManagerItemDao;
 import dao.ManagerUserDao;
@@ -35,63 +36,77 @@ public class ManagerServlet extends HttpServlet {
 		
 		String mod = request.getParameter("mod");
 		String person = request.getParameter("person");
+		String search = request.getParameter("txtsearch");
 		String showByKey = "";
 		System.out.println(mod);
 
-		if (person != null) {
+		if(search != null) {
+			String searchValue = search;
+			List<Item1> itemsSearch = DaoItem.getInstance().showItemByKey(o -> o.getNameItem().contains(searchValue));
+			request.getSession().setAttribute("showByKey", itemsSearch);
 
-			if (person.equals("Man")) {
-				
-				if(mod != null) {
-					if (mod.equals("Shoes")) {
-						List<Item> itembyShoes = DaoItem.getInstance()
-								.showItemByKey(o -> o.isGenderItem() && o.getCataloryItem().equals(Catalory.SHOES));
+			RequestDispatcher dd1 = request.getRequestDispatcher("MainProduct.jsp");
+
+			dd1.forward(request, response);
+		}else {
+			if (person != null) {
+
+				if (person.equals("Man")) {
+					
+					if(mod != null) {
+						if (mod.equals("Shoes")) {
+							List<Item1> itembyShoes = DaoItem.getInstance()
+									.showItemByKey(o -> o.isGenderItem() && o.getCataloryItem().equals(Catalory.SHOES));
+							
+							request.getSession().setAttribute("showByKey", itembyShoes);
+
+							RequestDispatcher dd1 = request.getRequestDispatcher("MainProduct.jsp");
+
+							dd1.forward(request, response);
+						}
+						if (mod.equals("Shirt")) {
+							List<Item1> itembyshirt = DaoItem.getInstance()
+									.showItemByKey(o -> o.isGenderItem() && o.getCataloryItem().equals(Catalory.SHIRT));
+							
+							request.getSession().setAttribute("showByKey", itembyshirt);
+
+							RequestDispatcher dd2 = request.getRequestDispatcher("MainProduct.jsp");
+							dd2.forward(request, response);
+
+						}
+						if (mod.equals("Cap")) {
+							List<Item1> itembycap = DaoItem.getInstance()
+									.showItemByKey(o -> o.isGenderItem() && o.getCataloryItem().equals(Catalory.CAPS));
+							
+							request.getSession().setAttribute("showByKey", itembycap);
+
+							RequestDispatcher dd3 = request.getRequestDispatcher("MainProduct.jsp");
+							dd3.forward(request, response);
+
+						}
 						
-						request.getSession().setAttribute("showByKey", itembyShoes);
+						
+					}
+					else {
+						List itemsMan = DaoItem.getInstance().showItemByKey(o -> o.isGenderItem());
+
+						request.getSession().setAttribute("showByKey", itemsMan);
 
 						RequestDispatcher dd1 = request.getRequestDispatcher("MainProduct.jsp");
 
 						dd1.forward(request, response);
 					}
-					if (mod.equals("Shirt")) {
-						List<Item> itembyshirt = DaoItem.getInstance()
-								.showItemByKey(o -> o.isGenderItem() && o.getCataloryItem().equals(Catalory.SHIRT));
-						
-						request.getSession().setAttribute("showByKey", itembyshirt);
-
-						RequestDispatcher dd2 = request.getRequestDispatcher("MainProduct.jsp");
-						dd2.forward(request, response);
-
-					}
-					if (mod.equals("Cap")) {
-						List<Item> itembycap = DaoItem.getInstance()
-								.showItemByKey(o -> o.isGenderItem() && o.getCataloryItem().equals(Catalory.CAPS));
-						
-						request.getSession().setAttribute("showByKey", itembycap);
-
-						RequestDispatcher dd3 = request.getRequestDispatcher("MainProduct.jsp");
-						dd3.forward(request, response);
-
-					}
 					
+
 				}
-				else {
-					List itemsMan = DaoItem.getInstance().showItemByKey(o -> o.isGenderItem());
+				System.out.println(mod);
 
-					request.getSession().setAttribute("showByKey", itemsMan);
-
-					RequestDispatcher dd1 = request.getRequestDispatcher("MainProduct.jsp");
-
-					dd1.forward(request, response);
-				}
-				
-
+			} else {
+				response.sendRedirect("index.jsp");
 			}
-			System.out.println(mod);
-
-		} else {
-			response.sendRedirect("index.jsp");
+			
 		}
+		
 
 	}
 

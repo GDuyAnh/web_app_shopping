@@ -36,14 +36,17 @@ public class CheckLoginServlet extends HttpServlet {
 		if(request.getParameter("txtusername") != null && request.getParameter("txtpassword") != null ) {
 			String username = request.getParameter("txtusername");
 			String password = request.getParameter("txtpassword");
+			System.out.println(username  + " username");
+			System.out.println(password  + " password");
 			
 		    List<User> users = new ArrayList<>();
+		    
 		    users = DaoUser.getInstance().getAllUser()
 		    		.stream()
-		    		.filter(o -> o.getUsername().equals(username) && o.getPassword().equals(password))
+		    		.filter(o -> o.getUserName().equals(username) && o.getUserPassword().equals(password))
 		    		.toList();
 		    if(users.size() == 1) {
-		    	
+		    	System.out.println(users);
 		    	
 		    	request.getSession().setAttribute("user", users.get(0));
 		    	

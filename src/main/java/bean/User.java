@@ -1,15 +1,20 @@
 package bean;
 
 public class User {
+
 	private int id;
 	private String name;
-	private String password;
-	private String username;
+	private String phone;
+	private String gmail;
 	private boolean gender;
+	private String address;
+	private int age;
+	private boolean admin;
+	private String userName;
+	private String userPassword;
+	private double priceUser;
+
 	
-	public User() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public int getId() {
 		return id;
@@ -27,20 +32,20 @@ public class User {
 		this.name = name;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getGmail() {
+		return gmail;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setGmail(String gmail) {
+		this.gmail = gmail;
 	}
 
 	public boolean isGender() {
@@ -51,22 +56,77 @@ public class User {
 		this.gender = gender;
 	}
 
-	public User(int id, String name, String password, String username, boolean gender) {
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
+
+	public double getPriceUser() {
+		return priceUser;
+	}
+
+	public void setPriceUser(double priceUser) {
+		this.priceUser = priceUser;
+	}
+
+	public User(int id, String name, String phone, String gmail, boolean gender, String address, int age, boolean admin,
+			String userName, String userPassword, double priceUser) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.password = password;
-		this.username = username;
+		this.phone = phone;
+		this.gmail = gmail;
 		this.gender = gender;
+		this.address = address;
+		this.age = age;
+		this.admin = admin;
+		this.userName = userName;
+		this.userPassword = userPassword;
+		this.priceUser = priceUser;
 	}
+
+	
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", password=" + password + ", username=" + username + ", gender="
-				+ gender + "]";
+		return "User [id=" + id + ", name=" + name + ", phone=" + phone + ", gmail=" + gmail + ", gender=" + gender
+				+ ", address=" + address + ", age=" + age + ", admin=" + admin + ", userName=" + userName
+				+ ", userPassword=" + userPassword + ", priceUser=" + priceUser + "]";
 	}
-	
 
-	
-	
 }

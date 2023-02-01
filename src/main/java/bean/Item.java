@@ -4,29 +4,29 @@ public class Item {
 	
 	private int idItem;
 	private String nameItem;
-	Catalory cataloryItem;
-	Color colorItem;
-	Size sizeItem;
-	private int amountItem;
+	private int category;
+	private int color;
+	private int size;
+	private int amount;
 	private double priceItem;
-	private boolean genderItem;
+	private int type;
 	private String imageURL;
 	
 	public Item() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Item(int idItem, String nameItem, Catalory cataloryItem, Color colorItem, Size sizeItem, int amountItem,
-			double priceItem, boolean genderItem, String imageURL) {
+	public Item(int idItem, String nameItem, int category, int color, int size, int amount, double priceItem,
+			int type, String imageURL) {
 		super();
 		this.idItem = idItem;
 		this.nameItem = nameItem;
-		this.cataloryItem = cataloryItem;
-		this.colorItem = colorItem;
-		this.sizeItem = sizeItem;
-		this.amountItem = amountItem;
+		this.category = category;
+		this.color = color;
+		this.size = size;
+		this.amount = amount;
 		this.priceItem = priceItem;
-		this.genderItem = genderItem;
+		this.type = type;
 		this.imageURL = imageURL;
 	}
 
@@ -46,36 +46,36 @@ public class Item {
 		this.nameItem = nameItem;
 	}
 
-	public Catalory getCataloryItem() {
-		return cataloryItem;
+	public int getCategory() {
+		return category;
 	}
 
-	public void setCataloryItem(Catalory cataloryItem) {
-		this.cataloryItem = cataloryItem;
+	public void setCategory(int category) {
+		this.category = category;
 	}
 
-	public Color getColorItem() {
-		return colorItem;
+	public int getColor() {
+		return color;
 	}
 
-	public void setColorItem(Color colorItem) {
-		this.colorItem = colorItem;
+	public void setColor(int color) {
+		this.color = color;
 	}
 
-	public Size getSizeItem() {
-		return sizeItem;
+	public int getSize() {
+		return size;
 	}
 
-	public void setSizeItem(Size sizeItem) {
-		this.sizeItem = sizeItem;
+	public void setSize(int size) {
+		this.size = size;
 	}
 
-	public int getAmountItem() {
-		return amountItem;
+	public int getAmount() {
+		return amount;
 	}
 
-	public void setAmountItem(int amountItem) {
-		this.amountItem = amountItem;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 	public double getPriceItem() {
@@ -86,12 +86,12 @@ public class Item {
 		this.priceItem = priceItem;
 	}
 
-	public boolean isGenderItem() {
-		return genderItem;
+	public int getType() {
+		return type;
 	}
 
-	public void setGenderItem(boolean genderItem) {
-		this.genderItem = genderItem;
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public String getImageURL() {
@@ -104,13 +104,10 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item [idItem=" + idItem + ", nameItem=" + nameItem + ", cataloryItem=" + cataloryItem + ", colorItem="
-				+ colorItem + ", sizeItem=" + sizeItem + ", amountItem=" + amountItem + ", priceItem=" + priceItem
-				+ ", genderItem=" + genderItem + ", imageURL=" + imageURL + "]";
+		return "ItemData [idItem=" + idItem + ", nameItem=" + nameItem + ", category=" + category + ", color=" + color
+				+ ", size=" + size + ", amount=" + amount + ", priceItem=" + priceItem + ", type=" + type
+				+ ", imageURL=" + imageURL + "]";
 	}
 	
-	
-	
-	
-	
+
 }

@@ -1,3 +1,4 @@
+<%@page import="bean.Item1"%>
 <%@page import="bean.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="bean.Item"%>
@@ -49,7 +50,7 @@
                     
                     
                     
-                  <a class="nav-link active text-white" href="#"><%=user.getName() %></a>
+                  <a class="nav-link active text-white" href="ShowinforUser.jsp"><%=user.getName() %></a>
                     
                     
                     
@@ -74,6 +75,7 @@
            
             <a href ="ManagerServlet?person=Man" class="nut_dropdown" id="nut_dropdown_man">Man </a>
         </li>
+        
         <li>
             <button class="nut_dropdown" id="nut_dropdown">Woman</button>
         </li>
@@ -89,6 +91,10 @@
         <li>
             <button class="nut_dropdown" id="nut_dropdown">SNKRS</button>
         </li>
+     <form action="ManagerServlet?search=search" method = "post">
+	        <input type="text" name="txtsearch">
+	        <input type="submit" value="OK">search
+      	</form>
     </ul>
 </div>
 <div class="noi-dung" id="noi_dung">
@@ -108,7 +114,7 @@
         </ul>
 </div>
 <!-- NavBar head 2 -->
- <% List<Item> items = (List<Item>)request.getSession().getAttribute("showByKey"); %>
+ <% List<Item1> items = (List<Item1>)request.getSession().getAttribute("showByKey"); %>
 <div class="body clearfix">
     <div class="boby-menu clearfix">
         <span>Men's Shoes ( <%= items.size() %> )</span>
@@ -151,7 +157,7 @@
                     <span class="category"><%= items.get(i).getCataloryItem() %></span>
                     <span class="colors"><%= items.get(i).getColorItem() %></span>
                     <span class="colors"><%= items.get(i).getSizeItem() %></span>
-                    <span class="price"><%= items.get(i).getPriceItem() %></span>                   
+                    <span class="price"><%= items.get(i).getPriceItem()%> $ </span>                   
             </li>
            
             <% } %>
@@ -322,3 +328,4 @@
 
 </body>
 </html>
+

@@ -8,6 +8,9 @@ public enum Color {
 	ORANGE,
 	YELLOW,
 	SILVER,
-	PINK,
+	PINK;
+	public Catalory getvalue ( int catelogy) {
+		return Catalory.values()[catelogy];
+	}
 
 }

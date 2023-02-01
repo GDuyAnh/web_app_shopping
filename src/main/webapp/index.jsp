@@ -1,5 +1,5 @@
 <%@page import="bean.User"%>
-<%@page import="bean.Item"%>
+<%@page import="bean.Item1"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -49,7 +49,7 @@
                     
                     
                     
-                  <a class="nav-link active text-white" href="#"><%=user.getName() %></a>
+                  <a class="nav-link active text-white" href="ShowinforUser.jsp"><%=user.getName() %></a>
                     
                     
                     
