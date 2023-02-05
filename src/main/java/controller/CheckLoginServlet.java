@@ -33,26 +33,54 @@ public class CheckLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("txtusername") != null && request.getParameter("txtpassword") != null ) {
-			String username = request.getParameter("txtusername");
-			String password = request.getParameter("txtpassword");
-			System.out.println(username  + " username");
-			System.out.println(password  + " password");
-			
-		    List<User> users = new ArrayList<>();
-		    
-		    users = DaoUser.getInstance().getAllUser()
-		    		.stream()
-		    		.filter(o -> o.getUserName().equals(username) && o.getUserPassword().equals(password))
-		    		.toList();
-		    if(users.size() == 1) {
-		    	System.out.println(users);
-		    	
-		    	request.getSession().setAttribute("user", users.get(0));
-		    	
-		    	response.sendRedirect("index.jsp");
-		    }
+		String mod1 = request.getParameter("mod1");
+		 List<User> users = new ArrayList<>();
+		 System.out.println(mod1 + "mod1");
+		if(mod1!=null) {
+			if(mod1.equals("add")) {
+				int id = Integer.parseInt(request.getParameter("txtid"));
+				String name = request.getParameter("txtname");
+				System.out.println("name : " + name);
+				String phone = request.getParameter("txtphone");
+				String gmail = request.getParameter("txtgmail");
+				Boolean gender = Boolean.parseBoolean(request.getParameter("txtgender"));
+				String address = request.getParameter("txtaddress");
+				int age = Integer.parseInt(request.getParameter("txtage"));
+				Boolean admin = Boolean.parseBoolean(request.getParameter("txtadmin"));
+				double priceUser = Double.parseDouble(request.getParameter("txtpriceUser"));
+				String username = request.getParameter("txtusernameregister");
+				String password = request.getParameter("txtpasswordregister");
+				
+				ManagerUserDao.getInstance().addUser(new User(id, name, phone, gmail, gender, address, age, admin, username, password, priceUser));
+				
+				
+				response.sendRedirect("Login.jsp");
+				
+			}
+			if(mod1.equals("login")) {
+				String username = request.getParameter("txtusername");
+				String password = request.getParameter("txtpassword");
+				System.out.println(username  + " username");
+				System.out.println(password  + " password");
+				
+			   
+			    
+			    users = DaoUser.getInstance().getAllUser()
+			    		.stream()
+			    		.filter(o -> o.getUserName().equals(username) && o.getUserPassword().equals(password))
+			    		.toList();
+			    if(users.size() == 1) {
+			    	System.out.println(users);
+			    	
+			    	request.getSession().setAttribute("user", users.get(0));
+			    	
+			    	response.sendRedirect("index.jsp");
+			    }
+			}
 		}
+		
+		
+		
 	}
 
 	/**

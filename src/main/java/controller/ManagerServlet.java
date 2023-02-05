@@ -84,6 +84,17 @@ public class ManagerServlet extends HttpServlet {
 							dd3.forward(request, response);
 
 						}
+						if (mod.equals("Trousers")) {
+							List<Item1> itembytrousers = DaoItem.getInstance()
+									.showItemByKey(o -> o.isGenderItem() && o.getCataloryItem().equals(Catalory.TROUSERS));
+							
+							request.getSession().setAttribute("showByKey", itembytrousers);
+
+							RequestDispatcher dd3 = request.getRequestDispatcher("MainProduct.jsp");
+							dd3.forward(request, response);
+
+						}
+						
 						
 						
 					}

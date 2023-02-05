@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Delete User</title>
+<title> User</title>
 </head>
 <body>
 <form action="" method = "post">

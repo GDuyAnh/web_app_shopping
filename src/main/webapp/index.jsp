@@ -100,7 +100,7 @@
                    <a href ="ManagerServlet?person=Man&mod=Shirt"> Áo</a>
                 </li>
                 <li>
-                    <a href = ""> Quần</a>
+                    <a href = "ManagerServlet?person=Man&mod=Trousers"> Quần</a>
                 </li>
                  <li>
                     <a href ="ManagerServlet?person=Man&mod=Cap" > Mũ </a>

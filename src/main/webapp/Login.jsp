@@ -8,11 +8,13 @@
 </head>
 <body>
 
-<form action="CheckLoginServlet" method = "post">
+<form action="CheckLoginServlet?mod1=login" method = "post">
 		User:<input type="text" name="txtusername" /><br /> 
 		PassWord:<input type="password" name="txtpassword" /><br />
 		<input type="submit" value="OK">
-	</form>
+		
+</form>
+<a class="dropdown-item" href="AddUsers.jsp">Register</a></li>
 
 </body>
 </html>
