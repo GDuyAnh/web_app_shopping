@@ -2,112 +2,119 @@ package bean;
 
 public class Item {
 	
-	private int idItem;
-	private String nameItem;
-	private int category;
-	private int color;
-	private int size;
-	private int amount;
-	private double priceItem;
-	private int type;
-	private String imageURL;
+	private int itemId;
+	private String itemName;
+	private String color;
+	private String size;
+	private String type;
+	private double price;
+	private double discount_price;
+	private String category;
+	private String[] images;
 	
 	public Item() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Item(int idItem, String nameItem, int category, int color, int size, int amount, double priceItem,
-			int type, String imageURL) {
+	public Item(int itemId, String itemName, String color, String size, String type, double price,
+			double discount_price, String category, String[] images) {
 		super();
-		this.idItem = idItem;
-		this.nameItem = nameItem;
-		this.category = category;
+		this.itemId = itemId;
+		this.itemName = itemName;
 		this.color = color;
 		this.size = size;
-		this.amount = amount;
-		this.priceItem = priceItem;
 		this.type = type;
-		this.imageURL = imageURL;
-	}
-
-	public int getIdItem() {
-		return idItem;
-	}
-
-	public void setIdItem(int idItem) {
-		this.idItem = idItem;
-	}
-
-	public String getNameItem() {
-		return nameItem;
-	}
-
-	public void setNameItem(String nameItem) {
-		this.nameItem = nameItem;
-	}
-
-	public int getCategory() {
-		return category;
-	}
-
-	public void setCategory(int category) {
+		this.price = price;
+		this.discount_price = discount_price;
 		this.category = category;
+		this.images = images;
 	}
 
-	public int getColor() {
+	public int getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getColor() {
 		return color;
 	}
 
-	public void setColor(int color) {
+	public void setColor(String color) {
 		this.color = color;
 	}
 
-	public int getSize() {
+	public String getSize() {
 		return size;
 	}
 
-	public void setSize(int size) {
+	public void setSize(String size) {
 		this.size = size;
 	}
 
-	public int getAmount() {
-		return amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-
-	public double getPriceItem() {
-		return priceItem;
-	}
-
-	public void setPriceItem(double priceItem) {
-		this.priceItem = priceItem;
-	}
-
-	public int getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
-	public String getImageURL() {
-		return imageURL;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public double getDiscount_price() {
+		return discount_price;
+	}
+
+	public void setDiscount_price(double discount_price) {
+		this.discount_price = discount_price;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String[] getImages() {
+		return images;
+	}
+
+	public void setImages(String[] images) {
+		this.images = images;
 	}
 
 	@Override
 	public String toString() {
-		return "ItemData [idItem=" + idItem + ", nameItem=" + nameItem + ", category=" + category + ", color=" + color
-				+ ", size=" + size + ", amount=" + amount + ", priceItem=" + priceItem + ", type=" + type
-				+ ", imageURL=" + imageURL + "]";
+		return "Item [itemId=" + itemId + ", itemName=" + itemName + ", color=" + color + ", size=" + size + ", type="
+				+ type + ", price=" + price + ", discount_price=" + discount_price + ", category=" + category + "]";
 	}
 	
+	
 
+
+
+	
+	
+	
+	
+	
 }

@@ -9,10 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import bean.Catalory;
 import bean.Item;
-import bean.Item1;
 import bean.User;
 import dao.ManagerItemDao;
 import dao.ManagerUserDao;
@@ -26,99 +23,35 @@ public class ManagerServlet extends HttpServlet {
 	ManagerUserDao Dao;
 	ManagerItemDao DaoItem;
 
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
 	public ManagerServlet() {
 		super();
-
+		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String mod = request.getParameter("mod");
-		String person = request.getParameter("person");
-		String search = request.getParameter("txtsearch");
+		String search = request.getParameter("search");
 		String showByKey = "";
-		System.out.println(mod);
 
+		
 		if(search != null) {
-			String searchValue = search;
-			List<Item1> itemsSearch = DaoItem.getInstance().showItemByKey(o -> o.getNameItem().contains(searchValue));
-			request.getSession().setAttribute("showByKey", itemsSearch);
-
+			String searchValue = request.getParameter("txtsearch");
+			System.out.println("search" + searchValue);
+			List<Item> itembyShoes = null;
+			request.getSession().setAttribute("showByKey", itembyShoes);
 			RequestDispatcher dd1 = request.getRequestDispatcher("MainProduct.jsp");
-
 			dd1.forward(request, response);
 		}else {
-			if (person != null) {
-
-				if (person.equals("Man")) {
-					
-					if(mod != null) {
-						if (mod.equals("Shoes")) {
-							List<Item1> itembyShoes = DaoItem.getInstance()
-									.showItemByKey(o -> o.isGenderItem() && o.getCataloryItem().equals(Catalory.SHOES));
-							
-							request.getSession().setAttribute("showByKey", itembyShoes);
-
-							RequestDispatcher dd1 = request.getRequestDispatcher("MainProduct.jsp");
-
-							dd1.forward(request, response);
-						}
-						if (mod.equals("Shirt")) {
-							List<Item1> itembyshirt = DaoItem.getInstance()
-									.showItemByKey(o -> o.isGenderItem() && o.getCataloryItem().equals(Catalory.SHIRT));
-							
-							request.getSession().setAttribute("showByKey", itembyshirt);
-
-							RequestDispatcher dd2 = request.getRequestDispatcher("MainProduct.jsp");
-							dd2.forward(request, response);
-
-						}
-						if (mod.equals("Cap")) {
-							List<Item1> itembycap = DaoItem.getInstance()
-									.showItemByKey(o -> o.isGenderItem() && o.getCataloryItem().equals(Catalory.CAPS));
-							
-							request.getSession().setAttribute("showByKey", itembycap);
-
-							RequestDispatcher dd3 = request.getRequestDispatcher("MainProduct.jsp");
-							dd3.forward(request, response);
-
-						}
-						if (mod.equals("Trousers")) {
-							List<Item1> itembytrousers = DaoItem.getInstance()
-									.showItemByKey(o -> o.isGenderItem() && o.getCataloryItem().equals(Catalory.TROUSERS));
-							
-							request.getSession().setAttribute("showByKey", itembytrousers);
-
-							RequestDispatcher dd3 = request.getRequestDispatcher("MainProduct.jsp");
-							dd3.forward(request, response);
-
-						}
-						
-						
-						
-					}
-					else {
-						List itemsMan = DaoItem.getInstance().showItemByKey(o -> o.isGenderItem());
-
-						request.getSession().setAttribute("showByKey", itemsMan);
-
-						RequestDispatcher dd1 = request.getRequestDispatcher("MainProduct.jsp");
-
-						dd1.forward(request, response);
-					}
-					
-
-				}
-				System.out.println(mod);
-
-			} else {
-				response.sendRedirect("index.jsp");
-			}
 			
 		}
-		
-
 	}
 
 	/**

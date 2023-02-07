@@ -4,25 +4,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title> User</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style_userDetail.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Document</title>
 </head>
 <body>
-<form action="" method = "post">
-	  <% User user = (User)request.getSession().getAttribute("user"); %>
-		id       :   <%=user.getId() %><br />
-		name     :   <%=user.getName() %><br />
-		phone    :   <%=user.getPhone() %><br />
-		gmail    :   <%=user.getGmail() %><br />
-		gender   :   <%=user.isGender() %><br />
-		address  :   <%=user.getAddress() %><br />
-		age      :   <%=user.getAge() %><br />
-		admin    :   <%=user.isAdmin() %><br />
-		priceUser:   <%=user.getPriceUser() %><br />
-		username :   <%=user.getUserName() %><br />
-		password :   <%=user.getUserPassword() %><br />
-		
-		</form>
-
+  <div class="user-detail-container">
+    <!--   ya dekhi -->
+     <% User user = (User)request.getSession().getAttribute("user"); %>
+    <div class="user-detail">
+      <div class="upper-card">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card user-profile-card" data-mh="card-one">
+              <div class="card-img-top">
+                <img
+                  src="https://specials-images.forbesimg.com/imageserve/5c76b7d331358e35dd2773a9/416x416.jpg?background=000000&cropX1=0&cropX2=4401&cropY1=0&cropY2=4401"
+                  alt="">
+              </div>
+              <div class="card-body">
+                <h3><%= user.getUser_name() %></h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card user-detail-card" data-mh="card-one">
+              <p><span>Gender :</span><%= user.getGender() %> </p>
+              <p><span>Age :</span> <%= user.getAge() %> </p>
+              <p><span>Email :</span> <%= user.getMail() %></p>
+              <p><span>Address :</span><%= user.getAddress() %></p>
+              
+              <p><span>Phone no. :</span> <%= user.getPhone_number() %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lower-card">
+        <div class="card">
+          <div class="box">
+            <!-- User Detail -->
+            <div class="parent-container">
+              <ul class="faq">
+                <li>
+                  <h3 class="question">
+                    Personal Detail
+                    <div class="plus-minus-toggle collapsed"></div>
+                  </h3>
+                  <div class="answer">
+                    <p class="list-title">Full Name :</p>
+                    <span>Phan Tian Ha</span>
+                    <p class="list-title">Age :</p>
+                    <span>21</span>
+                    <p class="list-title">Address :</p>
+                    <span>H423/23 Triquanta Street</span>
+                    <p class="list-title">Date of Birth :</p>
+                    <span>1995-23-11</span>
+                    <p class="list-title">Gender :</p>
+                    <span>Male</span>
+                    <p class="list-title">About Me :</p>
+                    <span>Input something about you here ....</span>
+                  </div>
+                </li>
+                <li>
+                  <h3 class="question">Manage order
+                    <div class="plus-minus-toggle collapsed"></div>
+                  </h3>
+                  <div class="answer">
+                    Nothing here
+                  </div>
+                </li>
+                <li>
+                  <h3 class="question">Your Favourite
+                    <div class="plus-minus-toggle collapsed"></div>
+                  </h3>
+                  <div class="answer">
+                    Nothing here
+                  </div>
+                </li>
+                <li>
+                  <h3 class="question">My Prefrences
+                    <div class="plus-minus-toggle collapsed"></div>
+                  </h3>
+                  <div class="answer">
+                    <p class="list-title">Email</p>
+                    <span>UserWithID1@gmail.com</span>
+                    <p class="list-title">Phone no.</p>
+                    <span>0903456789</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   ya samma -->
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    $('.faq li .question').click(function () {
+      $(this).find('.plus-minus-toggle').toggleClass('collapsed');
+      $(this).parent().toggleClass('active');
+    });
+  </script>
 </body>
 </html>

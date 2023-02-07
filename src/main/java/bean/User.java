@@ -1,58 +1,71 @@
 package bean;
 
 public class User {
-
-	private int id;
-	private String name;
-	private String phone;
-	private String gmail;
-	private boolean gender;
+	private int user_id;
+	private String user_name;
+	private String phone_number;
+	private String mail;
+	private String gender;
 	private String address;
 	private int age;
-	private boolean admin;
-	private String userName;
-	private String userPassword;
-	private double priceUser;
-
+	private boolean is_admin;
+	private String password;
 	
-
-	public int getId() {
-		return id;
+	public User() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public User(int user_id, String user_name, String phone_number, String mail, String gender, String address, int age,
+			boolean is_admin, String password) {
+		super();
+		this.user_id = user_id;
+		this.user_name = user_name;
+		this.phone_number = phone_number;
+		this.mail = mail;
+		this.gender = gender;
+		this.address = address;
+		this.age = age;
+		this.is_admin = is_admin;
+		this.password = password;
 	}
 
-	public String getName() {
-		return name;
+	public int getUser_id() {
+		return user_id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getUser_name() {
+		return user_name;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
-	public String getGmail() {
-		return gmail;
+	public String getPhone_number() {
+		return phone_number;
 	}
 
-	public void setGmail(String gmail) {
-		this.gmail = gmail;
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
 	}
 
-	public boolean isGender() {
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(boolean gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -72,61 +85,27 @@ public class User {
 		this.age = age;
 	}
 
-	public boolean isAdmin() {
-		return admin;
+	public boolean isIs_admin() {
+		return is_admin;
 	}
 
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
+	public void setIs_admin(boolean is_admin) {
+		this.is_admin = is_admin;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-
-	public String getUserPassword() {
-		return userPassword;
-	}
-
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
-	}
-
-	public double getPriceUser() {
-		return priceUser;
-	}
-
-	public void setPriceUser(double priceUser) {
-		this.priceUser = priceUser;
-	}
-
-	public User(int id, String name, String phone, String gmail, boolean gender, String address, int age, boolean admin,
-			String userName, String userPassword, double priceUser) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.phone = phone;
-		this.gmail = gmail;
-		this.gender = gender;
-		this.address = address;
-		this.age = age;
-		this.admin = admin;
-		this.userName = userName;
-		this.userPassword = userPassword;
-		this.priceUser = priceUser;
-	}
-
-	
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", phone=" + phone + ", gmail=" + gmail + ", gender=" + gender
-				+ ", address=" + address + ", age=" + age + ", admin=" + admin + ", userName=" + userName
-				+ ", userPassword=" + userPassword + ", priceUser=" + priceUser + "]";
+		return "User [user_id=" + user_id + ", user_name=" + user_name + ", phone_number=" + phone_number + ", mail="
+				+ mail + ", gender=" + gender + ", address=" + address + ", age=" + age + ", is_admin=" + is_admin
+				+ ", password=" + password + "]";
 	}
-
+	
 }
