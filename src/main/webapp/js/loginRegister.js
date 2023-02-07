@@ -37,6 +37,13 @@ let mainF = (e) => {
         allButtons[i].addEventListener("click", getButtons );
     for (var i = 0; i < switchBtn.length; i++)
         switchBtn[i].addEventListener("click", changeForm)
+
+	setTimeout(function() {
+        var mod = location.href.split("login=")[1];
+        if(mod == 1){
+            changeForm()
+        }
+      }, 100);
 }
 
 window.addEventListener("load", mainF);

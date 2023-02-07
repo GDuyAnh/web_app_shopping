@@ -92,11 +92,21 @@
     padding: 0px 13px;
 }
 
-
-
 .logo{
- margin-right: 25%;
- margin-left: 2%;
+  margin-right: 20%;
+  margin-left: 2%;
+  font-size: 50px;
+  margin-top: 10px;
+  float: left;
+  color: black;
+  transform: rotate(130deg);
+  transition: transform 1.4s;
+}
+
+.logo:hover{
+  color: rgba(0, 0, 0, 0.649);
+  box-shadow: #3d4752;
+  transform: rotate(0deg);
 }
 
 .nav-link{
@@ -235,7 +245,7 @@
 
 .search-icon {
   position: relative;
-  left: -31px;
+  left: -32px;
   color: white;
   cursor: pointer;
 }

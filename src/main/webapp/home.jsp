@@ -39,7 +39,7 @@
 	          		</li>
 			     	<li class="line-top"><span>|</span></li>
 		          	<li class="nav-item">
-		            	<a class="nav-link active text-black" href="/userDetail.html">Join Us</a>
+		            	<a class="nav-link active text-black" href="loginRegister.jsp?login=1">Join Us</a>
 		          	</li>
 		          	<li class="line-top"><span>|</span></li>
 		          	<li class="nav-item">
@@ -47,12 +47,7 @@
                      <% if(user == null){ %>
 		            	<a class="nav-link active text-black" href="loginRegister.jsp">Sign In</a>
 		            	<% }else {%>
-		            	 <a class="nav-link active text-black" href="showInforUser.jsp"><%=user.getUser_name() %></a>
-                    
-                    
-                    
-                    
-                    
+		            	 <a class="nav-link active text-black" href="showInforUser.jsp"><%=user.getUser_name() %></a>   
                     <% }%>
 		          	</li>
 	        	</ul>
@@ -63,10 +58,7 @@
 <!-- NavBar head 2 -->
   	<div class="navbar-cus clearfix">
 	    <ul>
-	     	<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-alipay logo" viewBox="0 0 16 16">
-		        <path d="M2.541 0H13.5a2.551 2.551 0 0 1 2.54 2.563v8.297c-.006 0-.531-.046-2.978-.813-.412-.14-.916-.327-1.479-.536-.303-.113-.624-.232-.957-.353a12.98 12.98 0 0 0 1.325-3.373H8.822V4.649h3.831v-.634h-3.83V2.121H7.26c-.274 0-.274.273-.274.273v1.621H3.11v.634h3.875v1.136h-3.2v.634H9.99c-.227.789-.532 1.53-.894 2.202-2.013-.67-4.161-1.212-5.51-.878-.864.214-1.42.597-1.746.998-1.499 1.84-.424 4.633 2.741 4.633 1.872 0 3.675-1.053 5.072-2.787 2.08 1.008 6.37 2.738 6.387 2.745v.105A2.551 2.551 0 0 1 13.5 16H2.541A2.552 2.552 0 0 1 0 13.437V2.563A2.552 2.552 0 0 1 2.541 0Z" />
-		        <path d="M2.309 9.27c-1.22 1.073-.49 3.034 1.978 3.034 1.434 0 2.868-.925 3.994-2.406-1.602-.789-2.959-1.353-4.425-1.207-.397.04-1.14.217-1.547.58Z" />
-	      	</svg>
+	     	<a href="home.jsp"><i class="fa-brands fa-renren logo"></i></a>
 	      	<li>
 	        	<a class="nut_dropdown" id="nut_dropdown_all" href="HomeServerlet?type=none" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">All Products</a>
 	      	</li>
