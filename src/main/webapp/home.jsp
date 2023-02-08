@@ -39,15 +39,15 @@
 	          		</li>
 			     	<li class="line-top"><span>|</span></li>
 		          	<li class="nav-item">
-		            	<a class="nav-link active text-black" href="loginRegister.jsp?login=1">Join Us</a>
+		            	<a class="nav-link active text-black" href="loginRegister.jsp">Join Us</a>
 		          	</li>
 		          	<li class="line-top"><span>|</span></li>
 		          	<li class="nav-item">
 		          	 <% User user = (User)request.getSession().getAttribute("user"); %>
                      <% if(user == null){ %>
-		            	<a class="nav-link active text-black" href="loginRegister.jsp">Sign In</a>
+		            	<a class="nav-link active text-black" href="loginRegister.jsp?login=1">Sign In</a>
 		            	<% }else {%>
-		            	 <a class="nav-link active text-black" href="showInforUser.jsp"><%=user.getUser_name() %></a>   
+		            	 <a class="nav-link active text-black" href="ShowinforUser.jsp"><%=user.getUser_name() %></a>   
                     <% }%>
 		          	</li>
 	        	</ul>
@@ -72,13 +72,13 @@
 	        	<a class="nut_dropdown" id="nut_dropdown_kids" href="HomeServerlet?type=3" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Kids</a>
 	      	</li>
 	      	<li>
-	        	<form class="search-container" action="ManagerServlet?search=search" method = "post">
+	        	<form class="search-container" action="HomeServerlet?search=search" method = "post">
 		          	<input id="search-box" type="text" class="search-box" name="txtsearch" />
 		          	<label for="search-box"><span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span></label>
 		          	<input type="submit" id="search-submit" />
 	        	</form>
 	      	</li>
-		   	<a class="order" href="/orderDetail.html">
+		   	<a class="order" href="orderDetail.jsp">
 		    	<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
 		        	<path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
 		      	</svg>

@@ -40,14 +40,14 @@
 					</li>
 					<li class="line-top"><span>|</span></li>
 					<li class="nav-item"><a class="nav-link active text-black"
-						href="loginRegister.jsp?login=1">Join Us</a></li>
+						href="loginRegister.jsp">Join Us</a></li>
 					<li class="line-top"><span>|</span></li>
 					<li class="nav-item">
 					<% User user = (User) request.getSession().getAttribute("user"); %> 
 					<%if (user == null) {%>
-						<a class="nav-link active text-black" href="loginRegister.jsp">Sign In</a> 
+						<a class="nav-link active text-black" href="loginRegister.jsp?login=1">Sign In</a> 
 					<%} else {%> 
- 						<a class="nav-link active text-black" href="showInforUser.jsp"><%=user.getUser_name()%></a> 
+ 						<a class="nav-link active text-black" href="ShowInforUser.jsp"><%=user.getUser_name()%></a> 
  					<%}%>
 					</li>
 				</ul>
@@ -72,7 +72,7 @@
      		<a class="nut_dropdown" id="nut_dropdown_kids" href="HomeServerlet?type=3" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Kids</a>
    		</li>
       	<li>
-        	<form class="search-container" action="ManagerServlet?search=search" method="post">
+        	<form class="search-container" action="HomeServerlet?search=search" method="post">
 	          <input id="search-box" type="text" class="search-box" name="txtsearch" />
 	          <label for="search-box"><span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span></label>
 	          <input type="submit" id="search-submit" />
@@ -198,6 +198,15 @@
             <div class="size-select" id="size-8">EU 42</div>
           </div>
           <div class="bag-feature clearfix">
+          <form action="OrderServlet?order=add" id ="formAddtoBag"  method = "post">
+          
+               Enter name:<input type="text" name="txtnameItemDetail" /><%= item.getItemName() %>
+		       Enter price:<input type="text" name="txtpriceItemDetail" /><%= item.getPrice() %>
+		       Enter id:<input type="text" name="txtidItemDetail" /><%= item.getItemId() %>
+		       Enter idUser:<input type="text" name="txtiduser" /><%= user.getUser_id()%>
+		       <input type="submit" value="OK">
+          
+          </form>
             <button class="addbag-btn clearfix">Add to Bag <i class="fa-solid fa-bag-shopping"></i></button>
             <button id="more" class="favourite-btn clearfix">Favourite <i class="fa-regular fa-heart"></i></button>
           </div>

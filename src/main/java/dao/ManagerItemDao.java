@@ -28,7 +28,16 @@ public class ManagerItemDao {
             Connection conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
             Statement stmt = conn.createStatement();
             // get data from table 'student'
-            ResultSet rs = stmt.executeQuery("select * from item");
+            String query = "SELECT item.item_id, item.item_name, item.color, item.size, type.type_name, item.price, item.discount_price, category.name_category, s.imgs\r\n"
+            		+ "FROM item \r\n"
+            		+ "INNER JOIN category ON item.category_id = category.category_id \r\n"
+            		+ "INNER JOIN type ON item.type = type.type_id\r\n"
+            		+ "INNER JOIN (\r\n"
+            		+ "	SELECT image.image_id, GROUP_CONCAT(image.image_url, '&') as imgs  \r\n"
+            		+ "    FROM image\r\n"
+            		+ "    GROUP BY image.image_id\r\n"
+            		+ ") s ON item.image_id = s.image_id";
+            ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
             	int id = rs.getInt(1);
             	String name = rs.getString(2);
@@ -108,7 +117,7 @@ public class ManagerItemDao {
 	
 	public List<Item> showItemByKey(Predicate<Item> predicate){
 		
-		return this.items.stream().filter(predicate).toList();
+		return this.getItem().stream().filter(predicate).toList();
 	}
 	
 	public List<Item> getItemByCategory(int catagoryId){ 

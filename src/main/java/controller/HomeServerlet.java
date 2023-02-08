@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Item;
+
 import dao.ManagerItemDao;
 
 /**
@@ -35,58 +36,75 @@ public class HomeServerlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if(request.getParameter("category") != null || request.getParameter("type") != null) {
-			String categoryRecive = (String)request.getParameter("category");
-			String type = (String)request.getParameter("type");
-			if(type.equals("none")) {	//get products with all type
-				if(categoryRecive == null) { 	// get all products
-					List<Item> items = itemDao.getInstance().getItem();
-					
-					request.getSession().setAttribute("items", items);
-					request.getSession().setAttribute("category", "AllItem");
-					RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
-					rd.forward(request, response);
-				}else {		// get products with single category
-					List<Item> items = itemDao.getInstance()
-											.getItemsWithWhereClause("WHERE item.category_id = " + categoryRecive);
-					
-					request.getSession().setAttribute("items", items);
-					if(items!= null && items.size()>0) {
-						request.getSession().setAttribute("category", "All " + items.get(0).getCategory());
+		String search = request.getParameter("txtsearch");
+		
+		if(search != null) {
+			String searchValue = search;
+			List<Item> itemsSearch = itemDao.getInstance().showItemByKey(o -> o.getItemName().contains(searchValue));
+			System.out.println(itemsSearch);
+			System.out.println(searchValue);
+			request.getSession().setAttribute("items", itemsSearch);
+
+			RequestDispatcher dd1 = request.getRequestDispatcher("itemsShow.jsp");
+
+			dd1.forward(request, response);
+		}
+		else {
+			if(request.getParameter("category") != null || request.getParameter("type") != null) {
+				String categoryRecive = (String)request.getParameter("category");
+				String type = (String)request.getParameter("type");
+				if(type.equals("none")) {	//get products with all type
+					if(categoryRecive == null) { 	// get all products
+						List<Item> items = itemDao.getInstance().getItem();
+						
+						request.getSession().setAttribute("items", items);
+						request.getSession().setAttribute("category", "AllItem");
+						RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
+						rd.forward(request, response);
+					}else {		// get products with single category
+						List<Item> items = itemDao.getInstance()
+												.getItemsWithWhereClause("WHERE item.category_id = " + categoryRecive);
+						
+						request.getSession().setAttribute("items", items);
+						if(items!= null && items.size()>0) {
+							request.getSession().setAttribute("category", "All " + items.get(0).getCategory());
+						}
+						RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
+						rd.forward(request, response);
 					}
-					RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
-					rd.forward(request, response);
+					
+				}else {		//get products with single type
+					if(categoryRecive == null){  	// get all products
+						List<Item> items = itemDao.getInstance()
+												.getItemsWithWhereClause("WHERE item.type = " + type);
+						
+						request.getSession().setAttribute("items", items);
+						if(items!= null && items.size()>0) {
+							request.getSession().setAttribute("category", "All " + items.get(0).getType() + " Products");
+						}
+						RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
+						rd.forward(request, response);
+					}else { // get products with single type
+						List<Item> items = itemDao.getInstance()
+												.getItemsWithWhereClause("WHERE item.type = " + type + " AND " + "item.category_id = " + categoryRecive);
+						
+						request.getSession().setAttribute("items", items);
+						if(items!= null && items.size()>0) {
+							request.getSession().setAttribute("category", items.get(0).getType() + "'s " + items.get(0).getCategory());
+						}
+						RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
+						rd.forward(request, response);
+					}
 				}
 				
-			}else {		//get products with single type
-				if(categoryRecive == null){  	// get all products
-					List<Item> items = itemDao.getInstance()
-											.getItemsWithWhereClause("WHERE item.type = " + type);
-					
-					request.getSession().setAttribute("items", items);
-					if(items!= null && items.size()>0) {
-						request.getSession().setAttribute("category", "All " + items.get(0).getType() + " Products");
-					}
-					RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
-					rd.forward(request, response);
-				}else { // get products with single type
-					List<Item> items = itemDao.getInstance()
-											.getItemsWithWhereClause("WHERE item.type = " + type + " AND " + "item.category_id = " + categoryRecive);
-					
-					request.getSession().setAttribute("items", items);
-					if(items!= null && items.size()>0) {
-						request.getSession().setAttribute("category", items.get(0).getType() + "'s " + items.get(0).getCategory());
-					}
-					RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
-					rd.forward(request, response);
-				}
+			}else {
+				RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+				rd.forward(request, response);
 			}
-			
-		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-			rd.forward(request, response);
-		}
 
+			
+		}
+		
 	}
 
 	/**

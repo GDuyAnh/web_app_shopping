@@ -63,7 +63,7 @@
                 <input class="form__input" type="password" placeholder="Password" name = "txtpassword"><a class="form__link">Forgot your
                     password?</a>
                     <input type="submit" value="OK">
-                <button class="form__button button submit gradient-border switch__button" type = "Submit">Login</button>
+                <button form ="b-form" class="form__button button submit gradient-border switch__button" type = "Submit">Login</button>
             </form>
         </div>
         <div class="switch" id="switch-cnt">

@@ -15,7 +15,7 @@
 <body>
   <div class="user-detail-container">
     <!--   ya dekhi -->
-     <% User user = (User)request.getSession().getAttribute("user"); %>
+    <% User user = (User)request.getSession().getAttribute("user"); %>
     <div class="user-detail">
       <div class="upper-card">
         <div class="row">

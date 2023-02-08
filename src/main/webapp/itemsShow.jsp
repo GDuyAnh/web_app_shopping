@@ -55,7 +55,7 @@
             <li class="nav-item">
                     <% User user = (User)request.getSession().getAttribute("user"); %>
                     <% if(user == null){ %>
-                    <a class="nav-link active text-black" href="Login.jsp">Sign In</a>
+                    <a class="nav-link active text-black" href="loginRegister.jsp?login=1">Sign In</a>
                     <% }else {%>
                     
                     
@@ -90,7 +90,7 @@
         	<a class="nut_dropdown" id="nut_dropdown_kids" href="HomeServerlet?type=3" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Kids</a>
       	</li>
         <li>
-          <form class="search-container" action="ManagerServlet?search=search" method = "post">
+          <form class="search-container" action="HomeServerlet?search=search" method = "post">
             <input id="search-box" type="text" class="search-box" name="txtsearch" />
             <label for="search-box"><span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span></label>
             <input type="submit" id="search-submit" />

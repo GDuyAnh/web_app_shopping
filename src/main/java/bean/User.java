@@ -105,7 +105,7 @@ public class User {
 	public String toString() {
 		return "User [user_id=" + user_id + ", user_name=" + user_name + ", phone_number=" + phone_number + ", mail="
 				+ mail + ", gender=" + gender + ", address=" + address + ", age=" + age + ", is_admin=" + is_admin
-				+ ", password=" + password + "]";
+				+ ", password=" + password +  "]";
 	}
 	
 }

@@ -105,7 +105,7 @@ public class Item {
 	@Override
 	public String toString() {
 		return "Item [itemId=" + itemId + ", itemName=" + itemName + ", color=" + color + ", size=" + size + ", type="
-				+ type + ", price=" + price + ", discount_price=" + discount_price + ", category=" + category + "]";
+				+ type + ", price=" + price + ", discount_price=" + discount_price + ", category=" + category + " image" + images[0] +"]";
 	}
 	
 	
