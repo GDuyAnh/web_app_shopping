@@ -39,15 +39,23 @@ let mainF = (e) => {
         switchBtn[i].addEventListener("click", changeForm)
 
 	setTimeout(function() {
-        var mod = location.href.split("login=")[1];
-        if(mod == 1){
-            changeForm()
-        }
+        var mod = location.href.split("?");
+		if(mod.length > 0){
+			mod = mod[1]
+			mod = mod.split("&")[0]
+			mod = mod.split("=")[1]
+	        if(mod == 1){
+	            changeForm()
+	        }
+		}
+		
       }, 100);
 }
 
 window.addEventListener("load", mainF);
-
+submitForm = function(form){
+    form.submit()
+}
 /**
  * range slider function
  * @param _rangeClass

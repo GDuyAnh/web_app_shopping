@@ -13,7 +13,17 @@
     <title>Login&Register</title>
 </head>
 <body>
-    <div class="main">
+	<% 	String currentUrl = request.getParameter("currentUrl"); 
+		String id = request.getParameter("id");
+		String category = request.getParameter("category");
+		String type = request.getParameter("type");
+		
+		request.getSession().setAttribute("currentUrl", currentUrl);
+		request.getSession().setAttribute("id", id);
+		request.getSession().setAttribute("category", category);
+		request.getSession().setAttribute("type", type);
+	%>
+    <div class="main">    
         <div class="container a-container" id="a-container">
             <form class="form" id="a-form" method="post" action="CheckLoginServlet?mod=Register">
                 <h2 class="form_title title">Create Account</h2>
@@ -44,12 +54,11 @@
                         <span class="range__value"></span>
                     </div>
                 </div>
-                <button class="form__button button submit gradient-border switch__button"
-                    onclick="show('popup_success')">Register</button>
+                <button form = "a-form" class="form__button button submit gradient-border switch__button" onclick="submitForm(form)">Register</button>
             </form>
         </div>
         <div class="container b-container" id="b-container">
-            <form class="form" id="b-form" method="post" action="CheckLoginServlet?mod=Login">
+            <form class="form" id="b-form" method="post" action="CheckLoginServlet?mod=Login">																				
                 <h2 class="form_title title">Sign in to Website</h2>
                 <div class="form__icons">
                     <i class="fa-brands fa-facebook form__icon"></i>
@@ -62,8 +71,7 @@
                 <input class="form__input" type="text" placeholder="Email" name = "txtemail">
                 <input class="form__input" type="password" placeholder="Password" name = "txtpassword"><a class="form__link">Forgot your
                     password?</a>
-                    <input type="submit" value="OK">
-                <button form ="b-form" class="form__button button submit gradient-border switch__button" type = "Submit">Login</button>
+                <button form="b-form" class="form__button button submit gradient-border switch__button" onclick="submitForm(form)">Login</button>
             </form>
         </div>
         <div class="switch" id="switch-cnt">
@@ -193,6 +201,7 @@
             $(this).parent().find('.gender-select').removeClass('selected');
             $(this).addClass('selected');
         });
+        
     </script>
 </body>
 </html>

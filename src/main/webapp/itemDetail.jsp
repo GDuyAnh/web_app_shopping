@@ -16,78 +16,97 @@
 </head>
 <body>
 	<!-- Template -->
-  <!-- NavBar head -->
-  <nav class="navbar navbar-expand navbar-light py-lg-0" style="background-color: #f5f5f5;max-height: 33px;">
-    <div class="container-fluid ms-2 me-5">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alexa"
-        viewBox="0 0 16 16">
-        <path
-          d="M7.996 0A7.998 7.998 0 0 0 0 8a8 8 0 0 0 6.93 7.93v-1.613a1.06 1.06 0 0 0-.717-1.008A5.602 5.602 0 0 1 2.4 7.865 5.579 5.579 0 0 1 8.054 2.4a5.599 5.599 0 0 1 5.535 5.81l-.002.046a6.116 6.116 0 0 1-.012.192l-.005.061a4.85 4.85 0 0 1-.033.284l-.01.068c-.685 4.516-6.564 7.054-6.596 7.068A7.998 7.998 0 0 0 15.992 8 7.998 7.998 0 0 0 7.996.001Z" />
-      </svg>
-      <div class="navbar end-0">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link active text-black"
-						aria-current="page" href="#">Find a Store</a></li>
-					<li class="line-top"><span>|</span></li>
-					<li class="nav-item">
-						<div class="dropdown" style="float: right;">
-							<a class="dropbtn" href="#">Help</a>
-							<div class="dropdown-content">
-								<a href="home.jsp">Home</a> <a href="#">Link 2</a> <a href="#">Link
-									3</a>
-							</div>
-						</div>
-					</li>
-					<li class="line-top"><span>|</span></li>
-					<li class="nav-item"><a class="nav-link active text-black"
-						href="loginRegister.jsp">Join Us</a></li>
-					<li class="line-top"><span>|</span></li>
-					<li class="nav-item">
-					<% User user = (User) request.getSession().getAttribute("user"); %> 
-					<%if (user == null) {%>
-						<a class="nav-link active text-black" href="loginRegister.jsp?login=1">Sign In</a> 
-					<%} else {%> 
- 						<a class="nav-link active text-black" href="ShowInforUser.jsp"><%=user.getUser_name()%></a> 
- 					<%}%>
-					</li>
-				</ul>
-			</div>
-    	</div>
-  </nav>
-  <!-- NavBar head -->
-  <!-- NavBar head 2 -->
-  <div class="navbar-cus clearfix">
-    <ul>
-      	<a href="home.jsp"><i class="fa-brands fa-renren logo"></i></a>
-      	<li>
-     		<a class="nut_dropdown" id="nut_dropdown_all" href="HomeServerlet?type=none" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">All Products</a>
-   		</li>
-   		<li>
-     		<a class="nut_dropdown" id="nut_dropdown_mans" href="HomeServerlet?type=1" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Man</a>
-   		</li>
-   		<li>
-     		<a class="nut_dropdown" id="nut_dropdown_womans" href="HomeServerlet?type=2" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Woman</a>
-   		</li>
-   		<li>
-     		<a class="nut_dropdown" id="nut_dropdown_kids" href="HomeServerlet?type=3" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Kids</a>
-   		</li>
-      	<li>
-        	<form class="search-container" action="HomeServerlet?search=search" method="post">
-	          <input id="search-box" type="text" class="search-box" name="txtsearch" />
-	          <label for="search-box"><span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span></label>
-	          <input type="submit" id="search-submit" />
-        	</form>
-      	</li>
-      <a class="order" href="/orderDetail.html">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
-          <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
-        </svg>
-      </a>
-    </ul>
-
-
-  </div>
-  <div class="noi-dung" id="noi_dung" value="none">
+<!-- NavBar head -->
+  	<nav class="navbar navbar-expand navbar-light py-lg-0" style="background-color: #f5f5f5; max-height: 33px;">
+    	<div class="container-fluid ms-2 me-5">
+	      	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alexa" viewBox="0 0 16 16">
+	        	<path d="M7.996 0A7.998 7.998 0 0 0 0 8a8 8 0 0 0 6.93 7.93v-1.613a1.06 1.06 0 0 0-.717-1.008A5.602 5.602 0 0 1 2.4 7.865 5.579 5.579 0 0 1 8.054 2.4a5.599 5.599 0 0 1 5.535 5.81l-.002.046a6.116 6.116 0 0 1-.012.192l-.005.061a4.85 4.85 0 0 1-.033.284l-.01.068c-.685 4.516-6.564 7.054-6.596 7.068A7.998 7.998 0 0 0 15.992 8 7.998 7.998 0 0 0 7.996.001Z" />
+	      	</svg>
+	      	<div class="navbar end-0">
+	        	<ul class="navbar-nav">
+	          		<li class="nav-item">
+            		  <div class="dropdown" style="float:right;">
+		               <a class="dropbtn" href="#">Find a Store</a>
+		              </div>
+	          		</li>
+	          		<li class="line-top"><span>|</span></li>
+	          		<li class="nav-item">
+		            <div class="dropdown" style="float:right;">
+		              <a class="dropbtn" href="#">Help</a>
+		              <div class="dropdown-content">
+		                <div class="drop-header-title">Help</div>
+		                <a href="/home.html">Home</a>
+		                <a href="#">Link 2</a>
+		                <a href="#">Link 3</a>
+		              </div>
+		            </div>
+		          </li>
+	          		<li class="line-top"><span>|</span></li>
+	          		<% User user = (User)request.getSession().getAttribute("user"); %>
+	          		<% if(user == null){ %>
+		          	<li class="nav-item">
+		          	  <div class="dropdown" style="float:right;">
+		                <a class="dropbtn" href="#" onclick="currentDirect('loginRegister.jsp?login=0')">Join Us</a>
+		              </div>
+		          	</li>
+		          	<li class="line-top"><span>|</span></li>
+		          	<li class="nav-item">
+		          	  <div class="dropdown" style="float:right;">
+		                <a class="dropbtn" href="#" onclick="currentDirect('loginRegister.jsp?login=1')">Sign In</a>
+		              </div>
+		            </li>
+		            <% }else {%>
+		            <li class="nav-item">
+		            <div class="dropdown" style="float:right;">   
+		              <a class="dropbtn" href="ShowinforUser.jsp">hi, <%=user.getUser_name() %></a>
+		              <div class="dropdown-content">
+		                <div class="drop-header-title">Account</div>
+		                <a href="ShowinforUser.jsp">Profile</a>
+		                <a href="#">Order</a>
+		                <a href="#">Favourite</a>
+		                <a href="#">Settings</a>
+		                <a href="#" onclick="currentDirect('CheckLoginServlet?mod=Logout')">Log Out</a>
+		              </div>
+		            </div>
+		          </li>
+		            	 
+                    <% }%>
+	        	</ul>
+	      	</div>
+	    </div>
+	</nav>
+<!-- NavBar head -->
+<!-- NavBar head 2 -->
+  	<div class="navbar-cus clearfix">
+	    <ul>
+	     	<a href="home.jsp"><i class="fa-brands fa-renren logo"></i></a>
+	      	<li>
+	        	<a class="nut_dropdown" id="nut_dropdown_all" href="HomeServerlet?type=none" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">All Products</a>
+	      	</li>
+	      	<li>
+	        	<a class="nut_dropdown" id="nut_dropdown_mans" href="HomeServerlet?type=1" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Man</a>
+	      	</li>
+	      	<li>
+	        	<a class="nut_dropdown" id="nut_dropdown_womans" href="HomeServerlet?type=2" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Woman</a>
+	      	</li>
+	      	<li>
+	        	<a class="nut_dropdown" id="nut_dropdown_kids" href="HomeServerlet?type=3" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Kids</a>
+	      	</li>
+	      	<li>
+	        	<form class="search-container" action="HomeServerlet?search=search" method = "post">
+		          	<input id="search-box" type="text" class="search-box" name="txtsearch" />
+		          	<label for="search-box"><span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span></label>
+		          	<input type="submit" id="search-submit" />
+	        	</form>
+	      	</li>
+		   	<a class="order" href="orderDetail.jsp">
+		    	<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+		        	<path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+		      	</svg>
+		 	</a>
+	    </ul>
+  	</div>
+  	<div class="noi-dung" id="noi_dung" value="none">
     <ul>
       <li>
         <span onclick="ClickCategory(1)">Shoes</span>
@@ -116,8 +135,11 @@
       }
     </script>
   </div>
-  <!-- NavBar head 2 -->
-  <!-- End Template -->
+  	<div style="background-color: #f5f5f5; text-align: center;">
+    	<div class="head_title_1">Good Luck Have Fun</div>
+  	</div>
+<!-- NavBar head 2 -->
+<!-- End Template -->
   <div style="height: 80px;">
   </div>
   <%
@@ -198,16 +220,13 @@
             <div class="size-select" id="size-8">EU 42</div>
           </div>
           <div class="bag-feature clearfix">
-          <form action="OrderServlet?order=add" id ="formAddtoBag"  method = "post">
-          
-               Enter name:<input type="text" name="txtnameItemDetail" /><%= item.getItemName() %>
-		       Enter price:<input type="text" name="txtpriceItemDetail" /><%= item.getPrice() %>
-		       Enter id:<input type="text" name="txtidItemDetail" /><%= item.getItemId() %>
-		       Enter idUser:<input type="text" name="txtiduser" /><%= user.getUser_id()%>
-		       <input type="submit" value="OK">
-          
-          </form>
-            <button class="addbag-btn clearfix">Add to Bag <i class="fa-solid fa-bag-shopping"></i></button>
+          <form action="OrderServlet?order=add" id ="formAddtoBag"  method="post" hidden>
+    		<input type="text" name="txtnameItemDetail" value="<%= item.getItemName() %>"/>
+		    <input type="text" name="txtpriceItemDetail" value="<%= item.getPrice() %>" />
+		    <input type="text" name="txtidItemDetail" value="<%= item.getItemId() %>" />
+		    <input type="text" name="txtiduser" value="<%= (user != null) ? user.getUser_id() : "none" %>" />
+		  </form>
+            <button class="addbag-btn clearfix" onclick="submitFormOrder()">Add to Bag <i class="fa-solid fa-bag-shopping"></i></button>
             <button id="more" class="favourite-btn clearfix">Favourite <i class="fa-regular fa-heart"></i></button>
           </div>
           <div class="description">
@@ -370,5 +389,17 @@
    		$(this).addClass('selected');
        });
   </script>
+  <script>
+       submitFormOrder = function(){
+	    	form = document.getElementById("formAddtoBag");
+	        if(form.elements[name="txtiduser"].value == "none"){
+	        	alert("Please login to add products")
+	        	let urlsplit = window.location.href.split("/");
+	        	window.location.href = "loginRegister.jsp?login=1&currentUrl=" + urlsplit[urlsplit.length - 1].replace("?", "&");
+	        }else{
+	        	form.submit();
+	        }
+	    }
+    </script>
 </body>
 </html>

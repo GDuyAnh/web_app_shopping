@@ -32,12 +32,11 @@ public class OrderServlet extends HttpServlet {
 		String order = request.getParameter("order");
 		if(order != null) {
 			if(order.equals("add")) {
-				
 				double price = Double.parseDouble(request.getParameter("txtpriceItemDetail"));
 				int idItem = Integer.parseInt(request.getParameter("txtidItemDetail"));
 				int iduser = Integer.parseInt(request.getParameter("txtiduser"));
-				
-				ManagerOrderDetailDao.getInstance().addOrderDetail(price, idItem, iduser);
+				System.out.println("price: " + price + ", idItem: " + idItem + ", iduser: " + iduser);
+				//ManagerOrderDetailDao.getInstance().addOrderDetail(price, idItem, iduser);
 				
 			}
 		}

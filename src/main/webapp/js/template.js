@@ -66,6 +66,12 @@ function OnmouseOut(id){
 document.addEventListener("touchstart", function(){}, true);
 
 
+currentDirect = function(url){
+	let urlsplit = window.location.href.split("/");
+	let current = urlsplit[urlsplit.length - 1];
+	window.location.href = url + "&currentUrl=" + urlsplit[urlsplit.length - 1].replace("?", "&").replace("#", "");
+}
+
 
 
 

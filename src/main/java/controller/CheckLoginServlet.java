@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.User;
 import dao.ManagerUserDao;
@@ -33,6 +34,17 @@ public class CheckLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mod = request.getParameter("mod");
+		String currentUrl = (String)request.getSession().getAttribute("currentUrl");
+		String id = (String)request.getSession().getAttribute("id");
+		String type = (String)request.getSession().getAttribute("type");
+		String category = (String)request.getSession().getAttribute("category");
+		
+		String Url = "";
+		if(currentUrl == null) {
+			Url = "home.jsp";
+		}else {
+			Url += currentUrl + "?" + (id != null ? "id=" + id + "&" : "") + (type != null ? "type=" + type + "&" : "")+ (category != null ? "category=" + category : "");
+		}
 		List<User> users = new ArrayList<>();
 		if(mod != null) {
 			if(mod.equals("Login")) {
@@ -48,9 +60,13 @@ public class CheckLoginServlet extends HttpServlet {
 			    	System.out.println(users);
 			    	
 			    	request.getSession().setAttribute("user", users.get(0));
+			    	response.sendRedirect(Url);
 			    	
-			    	response.sendRedirect("home.jsp");
 			    }
+			}else if(mod.equals("Logout")) {
+				request.getSession().setAttribute("user", null);
+				//request.getSession().setMaxInactiveInterval(1);
+				response.sendRedirect(Url);
 			}
 		}
 	}

@@ -24,32 +24,52 @@
 	      	<div class="navbar end-0">
 	        	<ul class="navbar-nav">
 	          		<li class="nav-item">
-	            		<a class="nav-link active text-black" aria-current="page" href="#">Find a Store</a>
+            		  <div class="dropdown" style="float:right;">
+		               <a class="dropbtn" href="#">Find a Store</a>
+		              </div>
 	          		</li>
 	          		<li class="line-top"><span>|</span></li>
 	          		<li class="nav-item">
 		            <div class="dropdown" style="float:right;">
-		              	<a class="dropbtn" href="#">Help</a>
-		              	<div class="dropdown-content">
-			                <a href="/home.jsp">Home</a>
-			                <a href="#">Link 2</a>
-			                <a href="#">Link 3</a>
-		              	</div>
+		              <a class="dropbtn" href="#">Help</a>
+		              <div class="dropdown-content">
+		                <div class="drop-header-title">Help</div>
+		                <a href="home.jsp">Home</a>
+		                <a href="#">Link 2</a>
+		                <a href="#">Link 3</a>
+		              </div>
 		            </div>
-	          		</li>
-			     	<li class="line-top"><span>|</span></li>
+		          </li>
+	          		<li class="line-top"><span>|</span></li>
+	          		<% User user = (User)request.getSession().getAttribute("user"); %>
+	          		<% if(user == null){ %>
 		          	<li class="nav-item">
-		            	<a class="nav-link active text-black" href="loginRegister.jsp">Join Us</a>
+		          	  <div class="dropdown" style="float:right;">
+		                <a class="dropbtn" href="#" onclick="currentDirect('loginRegister.jsp?login=0')">Join Us</a>
+		              </div>
 		          	</li>
 		          	<li class="line-top"><span>|</span></li>
 		          	<li class="nav-item">
-		          	 <% User user = (User)request.getSession().getAttribute("user"); %>
-                     <% if(user == null){ %>
-		            	<a class="nav-link active text-black" href="loginRegister.jsp?login=1">Sign In</a>
-		            	<% }else {%>
-		            	 <a class="nav-link active text-black" href="ShowinforUser.jsp"><%=user.getUser_name() %></a>   
+		          	  <div class="dropdown" style="float:right;">
+		                <a class="dropbtn" href="#" onclick="currentDirect('loginRegister.jsp?login=1')">Sign In</a>
+		              </div>
+		            </li>
+		            <% }else {%>
+		            <li class="nav-item">
+		            <div class="dropdown" style="float:right;">   
+		              <a class="dropbtn" href="ShowinforUser.jsp">hi, <%=user.getUser_name() %></a>
+		              <div class="dropdown-content">
+		                <div class="drop-header-title">Account</div>
+		                <a href="ShowinforUser.jsp">Profile</a>
+		                <a href="#">Order</a>
+		                <a href="#">Favourite</a>
+		                <a href="#">Settings</a>
+		                <a href="#" onclick="currentDirect('CheckLoginServlet?mod=Logout')">Log Out</a>
+		              </div>
+		            </div>
+		          </li>
+		            	 
                     <% }%>
-		          	</li>
 	        	</ul>
 	      	</div>
 	    </div>

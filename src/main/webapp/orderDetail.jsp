@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page import="bean.User"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,111 +16,134 @@
     <title>Order</title>
 </head>
 <body>
-    <!-- Template -->
-    <!-- NavBar head -->
-    <nav class="navbar navbar-expand navbar-light py-lg-0" style="background-color: #f5f5f5; max-height: 33px;">
-        <div class="container-fluid ms-2 me-5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alexa"
-                viewBox="0 0 16 16">
-                <path
-                    d="M7.996 0A7.998 7.998 0 0 0 0 8a8 8 0 0 0 6.93 7.93v-1.613a1.06 1.06 0 0 0-.717-1.008A5.602 5.602 0 0 1 2.4 7.865 5.579 5.579 0 0 1 8.054 2.4a5.599 5.599 0 0 1 5.535 5.81l-.002.046a6.116 6.116 0 0 1-.012.192l-.005.061a4.85 4.85 0 0 1-.033.284l-.01.068c-.685 4.516-6.564 7.054-6.596 7.068A7.998 7.998 0 0 0 15.992 8 7.998 7.998 0 0 0 7.996.001Z" />
-            </svg>
-            <div class="navbar end-0">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active text-black" aria-current="page" href="#">Find a Store</a>
-                    </li>
-                    <li class="line-top"><span>|</span></li>
-                    <li class="nav-item">
-                        <div class="dropdown" style="float:right;">
-                            <a class="dropbtn" href="#">Help</a>
-                            <div class="dropdown-content">
-                                <a href="/home.html">Home</a>
-                                <a href="#">Link 2</a>
-                                <a href="#">Link 3</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="line-top"><span>|</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-black" href="/userDetail.html">Join Us</a>
-                    </li>
-                    <li class="line-top"><span>|</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-black" href="/loginRegister.html">Sign In</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- NavBar head -->
-    <!-- NavBar head 2 -->
-    <div class="navbar-cus clearfix">
-        <ul>
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-alipay logo"
-                viewBox="0 0 16 16">
-                <path
-                    d="M2.541 0H13.5a2.551 2.551 0 0 1 2.54 2.563v8.297c-.006 0-.531-.046-2.978-.813-.412-.14-.916-.327-1.479-.536-.303-.113-.624-.232-.957-.353a12.98 12.98 0 0 0 1.325-3.373H8.822V4.649h3.831v-.634h-3.83V2.121H7.26c-.274 0-.274.273-.274.273v1.621H3.11v.634h3.875v1.136h-3.2v.634H9.99c-.227.789-.532 1.53-.894 2.202-2.013-.67-4.161-1.212-5.51-.878-.864.214-1.42.597-1.746.998-1.499 1.84-.424 4.633 2.741 4.633 1.872 0 3.675-1.053 5.072-2.787 2.08 1.008 6.37 2.738 6.387 2.745v.105A2.551 2.551 0 0 1 13.5 16H2.541A2.552 2.552 0 0 1 0 13.437V2.563A2.552 2.552 0 0 1 2.541 0Z" />
-                <path
-                    d="M2.309 9.27c-1.22 1.073-.49 3.034 1.978 3.034 1.434 0 2.868-.925 3.994-2.406-1.602-.789-2.959-1.353-4.425-1.207-.397.04-1.14.217-1.547.58Z" />
-            </svg>
-            <li>
-                <a class="nut_dropdown" id="nut_dropdown_all" href="#" onmouseover="OnmouseOver(id)"
-                    onmouseout="OnmouseOut(id)">All Products</a>
-            </li>
-            <li>
-                <a class="nut_dropdown" id="nut_dropdown_mans" href="#" onmouseover="OnmouseOver(id)"
-                    onmouseout="OnmouseOut(id)">Man</a>
-            </li>
-            <li>
-                <a class="nut_dropdown" id="nut_dropdown_womans" href="#" onmouseover="OnmouseOver(id)"
-                    onmouseout="OnmouseOut(id)">Woman</a>
-            </li>
-            <li>
-                <a class="nut_dropdown" id="nut_dropdown_kids" href="#" onmouseover="OnmouseOver(id)"
-                    onmouseout="OnmouseOut(id)">Kids</a>
-            </li>
-            <li>
-                <form class="search-container" action="ManagerServlet?search=search" method="post">
-                    <input id="search-box" type="text" class="search-box" name="txtsearch" />
-                    <label for="search-box"><span class="search-icon"><i
-                                class="fa-solid fa-magnifying-glass"></i></span></label>
-                    <input type="submit" id="search-submit" />
-                </form>
-            </li>
-            <a class="order clearfix" href="/orderDetail.html">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                </svg>
-                <span class="order_total clearfix">4</span>
-            </a>
-        </ul>
+   <!-- Template -->
+<!-- NavBar head -->
+  	<nav class="navbar navbar-expand navbar-light py-lg-0" style="background-color: #f5f5f5; max-height: 33px;">
+    	<div class="container-fluid ms-2 me-5">
+	      	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alexa" viewBox="0 0 16 16">
+	        	<path d="M7.996 0A7.998 7.998 0 0 0 0 8a8 8 0 0 0 6.93 7.93v-1.613a1.06 1.06 0 0 0-.717-1.008A5.602 5.602 0 0 1 2.4 7.865 5.579 5.579 0 0 1 8.054 2.4a5.599 5.599 0 0 1 5.535 5.81l-.002.046a6.116 6.116 0 0 1-.012.192l-.005.061a4.85 4.85 0 0 1-.033.284l-.01.068c-.685 4.516-6.564 7.054-6.596 7.068A7.998 7.998 0 0 0 15.992 8 7.998 7.998 0 0 0 7.996.001Z" />
+	      	</svg>
+	      	<div class="navbar end-0">
+	        	<ul class="navbar-nav">
+	          		<li class="nav-item">
+            		  <div class="dropdown" style="float:right;">
+		               <a class="dropbtn" href="#">Find a Store</a>
+		              </div>
+	          		</li>
+	          		<li class="line-top"><span>|</span></li>
+	          		<li class="nav-item">
+		            <div class="dropdown" style="float:right;">
+		              <a class="dropbtn" href="#">Help</a>
+		              <div class="dropdown-content">
+		                <div class="drop-header-title">Help</div>
+		                <a href="home.jsp">Home</a>
+		                <a href="#">Link 2</a>
+		                <a href="#">Link 3</a>
+		              </div>
+		            </div>
+		          </li>
+	          		<li class="line-top"><span>|</span></li>
+	          		<% User user = (User)request.getSession().getAttribute("user"); %>
+	          		<% if(user == null){ %>
+		          	<li class="nav-item">
+		          	  <div class="dropdown" style="float:right;">
+		                <a class="dropbtn" href="#" onclick="currentDirect('loginRegister.jsp?login=0')">Join Us</a>
+		              </div>
+		          	</li>
+		          	<li class="line-top"><span>|</span></li>
+		          	<li class="nav-item">
+		          	  <div class="dropdown" style="float:right;">
+		                <a class="dropbtn" href="#" onclick="currentDirect('loginRegister.jsp?login=1')">Sign In</a>
+		              </div>
+		            </li>
+		            <% }else {%>
+		            <li class="nav-item">
+		            <div class="dropdown" style="float:right;">   
+		              <a class="dropbtn" href="ShowinforUser.jsp">hi, <%=user.getUser_name() %></a>
+		              <div class="dropdown-content">
+		                <div class="drop-header-title">Account</div>
+		                <a href="ShowinforUser.jsp">Profile</a>
+		                <a href="#">Order</a>
+		                <a href="#">Favourite</a>
+		                <a href="#">Settings</a>
+		                <a href="#" onclick="currentDirect('CheckLoginServlet?mod=Logout')">Log Out</a>
+		              </div>
+		            </div>
+		          </li>
+		            	 
+                    <% }%>
+	        	</ul>
+	      	</div>
+	    </div>
+	</nav>
+<!-- NavBar head -->
+<!-- NavBar head 2 -->
+  	<div class="navbar-cus clearfix">
+	    <ul>
+	     	<a href="home.jsp"><i class="fa-brands fa-renren logo"></i></a>
+	      	<li>
+	        	<a class="nut_dropdown" id="nut_dropdown_all" href="HomeServerlet?type=none" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">All Products</a>
+	      	</li>
+	      	<li>
+	        	<a class="nut_dropdown" id="nut_dropdown_mans" href="HomeServerlet?type=1" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Man</a>
+	      	</li>
+	      	<li>
+	        	<a class="nut_dropdown" id="nut_dropdown_womans" href="HomeServerlet?type=2" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Woman</a>
+	      	</li>
+	      	<li>
+	        	<a class="nut_dropdown" id="nut_dropdown_kids" href="HomeServerlet?type=3" onmouseover="OnmouseOver(id)" onmouseout="OnmouseOut(id)">Kids</a>
+	      	</li>
+	      	<li>
+	        	<form class="search-container" action="HomeServerlet?search=search" method = "post">
+		          	<input id="search-box" type="text" class="search-box" name="txtsearch" />
+		          	<label for="search-box"><span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span></label>
+		          	<input type="submit" id="search-submit" />
+	        	</form>
+	      	</li>
+		   	<a class="order" href="orderDetail.jsp">
+		    	<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+		        	<path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+		      	</svg>
+		 	</a>
+	    </ul>
+  	</div>
+  	<div class="noi-dung" id="noi_dung" value="none">
+    <ul>
+      <li>
+        <span onclick="ClickCategory(1)">Shoes</span>
+        <!-- <a href="home.jsp?category=1" onclick="ClickCategory(href)">Shoes</a> -->
+      </li>
+      <li>
+        <span onclick="ClickCategory(2)">Shirts</span>
+        <!-- <a href="home.jsp?category=2" onclick="ClickCategory(href)">Shirts</a> -->
+      </li>
+      <li>
+        <span onclick="ClickCategory(3)">Shorts</span>
+        <!-- <a href="home.jsp?category=3" onclick="ClickCategory(href)">Shorts</a> -->
+      </li>
+      <li>
+        <span onclick="ClickCategory(4)">Caps</span>
+        <!-- <a href="home.jsp?category=4" onclick="ClickCategory(href)">Caps</a> -->
+      </li>
+    </ul>
+    <script>
+      function ClickCategory(category){
+   		baseUrl = "HomeServerlet";
+        type = document.getElementById("noi_dung").getAttribute('value');
+        Url = baseUrl + "?category=" + category + "&type=" + type;
+        window.location.href = Url;
 
-
-    </div>
-    <div class="noi-dung" id="noi_dung" value="none">
-        <ul>
-            <li>
-                <a href="/itemsShow.html">Shoes</a>
-            </li>
-            <li>
-                Shirts
-            </li>
-            <li>
-                Shorts
-            </li>
-            <li>
-                Caps
-            </li>
-        </ul>
-    </div>
-    <!-- NavBar head 2 -->
-    <!-- End Template -->
+      }
+    </script>
+  </div>
+  	<div style="background-color: #f5f5f5; text-align: center;">
+    	<div class="head_title_1">Good Luck Have Fun</div>
+  	</div>
+<!-- NavBar head 2 -->
+<!-- End Template -->
     <div style="height: 50px;">
     </div>
-    <div class="container_main clearfix">
+    <div id="bodypage" class="container_main clearfix">
         <div class="container_left clearfix">
             <div class="order_bag">
                 <span class="sub_title">Bag</span>
@@ -369,9 +393,10 @@
     </footer>
     <!-- Footer -->
 
-    <script src="template.js"></script>
+    <script src="${pageContext.request.contextPath}/js/template.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    
 </body>
 </html>
