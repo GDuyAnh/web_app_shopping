@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="bean.OrderDetail"%>
 <%@page import="bean.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -100,7 +102,7 @@
 		          	<input type="submit" id="search-submit" />
 	        	</form>
 	      	</li>
-		   	<a class="order" href="orderDetail.jsp">
+		   	<a class="order" href="OrderServlet?bag=bag">
 		    	<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
 		        	<path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
 		      	</svg>
@@ -147,96 +149,46 @@
         <div class="container_left clearfix">
             <div class="order_bag">
                 <span class="sub_title">Bag</span>
-                <div class="list_orders">
-                    <div class="order_item">
-                        <div class="item item_img">
-                            <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/572475a8-427c-43a6-9fa9-5d41827fc848/air-force-1-07-shoes-hr5tH4.png"
-                                alt="">
-                        </div>
-                        <div class="item item_infor">
-                            <span class="infor item_name">Nike Air Force 1 '07</span>
-                            <span class="infor item_category">Men's Shoes</span>
-                            <span class="infor item_color">White/Red</span>
-                            <div class="infor item_choose">
-                                <span class="item_size">Size 44</span>
-                                <span class="item_quantity">Quantity 2</span>
-                            </div>
-                            <div class="infor sub_options">
-                                <button><i class="fa-regular fa-heart"></i></button>
-                                <button><i class="fa-regular fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                        <div class="item item_price">
-                            7,038,000₫
-                        </div>
-                    </div>
-                    <div class="order_item">
-                        <div class="item item_img">
-                            <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/ee25f07e-c45a-4fa9-a0f1-0d29e286fab0/air-force-1-mid-07-shoes-ZzCgrn.png"
-                                alt="">
-                        </div>
-                        <div class="item item_infor">
-                            <span class="infor item_name">Nike Air Force 1 Mid '07</span>
-                            <span class="infor item_category">Men's Shoes</span>
-                            <span class="infor item_color">White/White/Wolf Grey</span>
-                            <div class="infor item_choose">
-                                <span class="item_size">Size 40.5</span>
-                                <span class="item_quantity">Quantity 1</span>
-                            </div>
-                            <div class="infor sub_options">
-                                <button><i class="fa-regular fa-heart"></i></button>
-                                <button><i class="fa-regular fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                        <div class="item item_price">
-                            3,519,000₫
-                        </div>
-                    </div>
-                    <div class="order_item">
-                        <div class="item item_img">
-                            <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/02e1a28f-6f5c-462e-af45-bd9ec18f3fb9/air-force-1-07-lv8-shoes-Blj3sx.png"
-                                alt="">
-                        </div>
-                        <div class="item item_infor">
-                            <span class="infor item_name">Nike Air Force 1 '07 LV8</span>
-                            <span class="infor item_category">Men's Shoes</span>
-                            <span class="infor item_color">White/Stadium</span>
-                            <div class="infor item_choose">
-                                <span class="item_size">Size 44</span>
-                                <span class="item_quantity">Quantity 1</span>
-                            </div>
-                            <div class="infor sub_options">
-                                <button><i class="fa-regular fa-heart"></i></button>
-                                <button><i class="fa-regular fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                        <div class="item item_price">
-                            3,519,000₫
-                        </div>
-                    </div>
-                    <div class="order_item">
-                        <div class="item item_img">
-                            <img src="https://zunezx.com/upload/image/cache/data/banner/Tee/UP-WEB/central-shirt/3-a22-crop-550-550.PNG" alt="">
-                            <!-- <img src="https://zunezx.com/upload/image/cache/data/banner/Tee/UP-WEB/central-shirt/IMG7398-b1e-crop-550-550.jpg" alt=""> -->
-                        </div>
-                        <div class="item item_infor">
-                            <span class="infor item_name">Central Coast Lady Shirt</span>
-                            <span class="infor item_category">Unisex Clothing</span>
-                            <span class="infor item_color">Black</span>
-                            <div class="infor item_choose">
-                                <span class="item_size">Size XL</span>
-                                <span class="item_quantity">Quantity 1</span>
-                            </div>
-                            <div class="infor sub_options">
-                                <button><i class="fa-regular fa-heart"></i></button>
-                                <button><i class="fa-regular fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                        <div class="item item_price">
-                            590,000₫
-                        </div>
-                    </div>
-                </div>
+                <form id="form_checkout" action="OrderServlet?order=checkout" method="post">
+	                <div class="list_orders">	                    
+	                        <% List<OrderDetail> orderDetails = (List<OrderDetail>)request.getSession().getAttribute("ordeDetails"); %>
+	                        <%if(orderDetails != null){ %>
+	                        <%for(int i = 0; i < orderDetails.size(); i++) { %>
+	                        <div class="order_item">
+	                        <div class="item item_img">
+	                            <img src="<%= orderDetails.get(i).getImage() %>"
+	                                alt="">
+	                        </div>
+	                        <div class="item item_infor">
+	                            <span class="infor item_name"><%= orderDetails.get(i).getName()  %></span>
+	                            <span class="infor item_category"><%= orderDetails.get(i).getCategory() %></span>
+	                            <span class="infor item_color"><%= orderDetails.get(i).getColor() %></span>
+	                            <div class="infor item_choose">
+	                                <span class="item_size"><%= orderDetails.get(i).getSize() %></span>
+	                                <span class="item_quantity"><%= orderDetails.get(i).getQuantity() %></span>
+	                            </div>
+	                            <div class="infor sub_options">
+	                                <a href="#"><i class="fa-regular fa-heart"></i></a>
+	                                <a href="#"><i class="fa-regular fa-trash-can"></i></a>
+	                            </div>
+	                        </div>
+	                        <div class="item item_price">
+	                           <div class="item item_price">
+	                                <div class="price"><%= orderDetails.get(i).getPrice() %> <span>₫</span></div>
+	                                <div class="check-box">
+	                                    <input class="checkbox-item" type="checkbox" name="txtcheckbox" value="<%= orderDetails.get(i).getOrder_detail_id() %>" price="<%= orderDetails.get(i).getPrice() %>" onchange="checkBoxClick()">
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                        
+	                        <%} %>
+	                        <%} %>
+	                        
+	                    </div>
+	                    	               
+	                </div>
+                </form>
             </div>
             <div class="favourites_item">
                 <span class="sub_title">Favourite</span>
@@ -251,19 +203,17 @@
             <div class="summary_total">
                 <div class="subtotal_pay clearfix">
                     <div class="infor_label clearfix">Subtotal</div>
-                    <div class="value_label clearfix">14,666,000₫</div>
+                    <div id="sub_total" class="value_label clearfix">0 <span>₫</span></div>
                 </div>
                 <div class="deliver_pay clearfix">
                     <div class="infor_label">Estimated Delivery & Handling</div>
-                    <div class="value_label">54,000₫</div>
+                    <div id="deliver_price" class="value_label">20,000 <span>₫</span></div>
                 </div>
                 <div class="total_payment clearfix">
                     <div class="infor_label">Total</div>
-                    <div class="value_label">14,720,000₫</div>
+                    <div id="total_price" class="value_label">0 <span>₫</span></div>
                 </div>
-                <form action="#" method="post">
-                    <button class="checkout_btn" type="submit">Checkout<i class="fa-solid fa-wallet"></i></button>
-                </form>
+                <button id="btn_checkout" class="checkout_btn" form="form_checkout">Checkout<i class="fa-solid fa-wallet"></i></button>
             </div>
         </div>
 
@@ -397,6 +347,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script>
+        checkBoxClick = function(){
+            all_check_box = document.getElementsByClassName("checkbox-item")
+            let total_price = 0;
+            for(i = 0; i < all_check_box.length; i++){
+                if(all_check_box[i].checked){
+                    box_price = parseInt(all_check_box[i].getAttribute("price").replaceAll(",", ""));
+                    total_price += box_price
+
+                }
+            }
+            subtotal = total_price;
+            deliver_price = parseInt(document.getElementById("deliver_price").textContent.replace(",", "").replace("₫", "").trim());
+
+            total_price = subtotal + deliver_price
+
+            subtotal = Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(subtotal);
+            total_price = Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total_price);
+            document.getElementById("sub_total").textContent = subtotal.replaceAll(".", ",")
+            document.getElementById("total_price").textContent = total_price.replaceAll(".", ",")
+
+        }
+
+
+    </script>
     
 </body>
 </html>

@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Item;
-
+import bean.OrderDetail;
 import dao.ManagerItemDao;
+import dao.ManagerOrderDetailDao;
 
 /**
  * Servlet implementation class HomeServerlet
@@ -21,6 +22,7 @@ import dao.ManagerItemDao;
 public class HomeServerlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ManagerItemDao itemDao;
+	ManagerOrderDetailDao orderdetailDao;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -37,6 +39,7 @@ public class HomeServerlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String search = request.getParameter("txtsearch");
+		
 		
 		if(search != null) {
 			String searchValue = search;

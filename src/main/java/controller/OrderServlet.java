@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.OrderDetail;
+import bean.User;
 import dao.ManagerOrderDetailDao;
 
 /**
@@ -17,6 +20,7 @@ import dao.ManagerOrderDetailDao;
 public class OrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        ManagerOrderDetailDao orderDao;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,6 +34,7 @@ public class OrderServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String order = request.getParameter("order");
+		String bag = request.getParameter("bag");
 		if(order != null) {
 			if(order.equals("add")) {
 				double price = Double.parseDouble(request.getParameter("txtpriceItemDetail"));
@@ -37,8 +42,31 @@ public class OrderServlet extends HttpServlet {
 				int iduser = Integer.parseInt(request.getParameter("txtiduser"));
 				System.out.println("price: " + price + ", idItem: " + idItem + ", iduser: " + iduser);
 				//ManagerOrderDetailDao.getInstance().addOrderDetail(price, idItem, iduser);
+				response.sendRedirect("home.jsp");
 				
 			}
+			if(order.equals("checkout")) {
+				String[] listIDs = request.getParameterValues("txtcheckbox");
+				for (int i = 0; i < listIDs.length; i++) {
+					System.out.print(listIDs[i] + ", ");
+				}
+				System.out.println();
+			}
+			
+			
+				
+			
+		}
+		if(bag != null) {
+		if(bag.equals("bag")) {
+			User user = (User)request.getSession().getAttribute("user");
+			List<OrderDetail> ordeDetails = orderDao.getInstance().order_detail_show(user.getUser_id());
+			System.out.println("=============================");
+			System.out.println(ordeDetails );
+			request.getSession().setAttribute("ordeDetails", ordeDetails);
+
+			response.sendRedirect("orderDetail.jsp");
+		}
 		}
 	}
 

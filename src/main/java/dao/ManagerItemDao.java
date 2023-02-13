@@ -97,7 +97,7 @@ public class ManagerItemDao {
             	
             	Item item = new Item(id, name, color, size, type_name, price, price_sale, category, imgs);
             	items1.add(item);
-            	System.out.println(item);
+            	
             }
             // close connection
             conn.close();
@@ -231,7 +231,7 @@ public class ManagerItemDao {
             	
             	Item item = new Item(id, name, color, size, type_name, price, price_sale, category, imgs);
             	items1.add(item);
-            	System.out.println(item);
+            	
             }
             // close connection
             conn.close();
