@@ -44,12 +44,8 @@ public class HomeServerlet extends HttpServlet {
 		if(search != null) {
 			String searchValue = search;
 			List<Item> itemsSearch = itemDao.getInstance().showItemByKey(o -> o.getItemName().contains(searchValue));
-			System.out.println(itemsSearch);
-			System.out.println(searchValue);
 			request.getSession().setAttribute("items", itemsSearch);
-
 			RequestDispatcher dd1 = request.getRequestDispatcher("itemsShow.jsp");
-
 			dd1.forward(request, response);
 		}
 		else {
@@ -61,7 +57,7 @@ public class HomeServerlet extends HttpServlet {
 						List<Item> items = itemDao.getInstance().getItem();
 						
 						request.getSession().setAttribute("items", items);
-						request.getSession().setAttribute("category", "AllItem");
+						request.getSession().setAttribute("category_name", "All products");
 						RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
 						rd.forward(request, response);
 					}else {		// get products with single category
@@ -70,7 +66,7 @@ public class HomeServerlet extends HttpServlet {
 						
 						request.getSession().setAttribute("items", items);
 						if(items!= null && items.size()>0) {
-							request.getSession().setAttribute("category", "All " + items.get(0).getCategory());
+							request.getSession().setAttribute("category_name", "All " + items.get(0).getCategory());
 						}
 						RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
 						rd.forward(request, response);
@@ -83,7 +79,7 @@ public class HomeServerlet extends HttpServlet {
 						
 						request.getSession().setAttribute("items", items);
 						if(items!= null && items.size()>0) {
-							request.getSession().setAttribute("category", "All " + items.get(0).getType() + " Products");
+							request.getSession().setAttribute("category_name", "All " + items.get(0).getType() + " Products");
 						}
 						RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
 						rd.forward(request, response);
@@ -93,7 +89,7 @@ public class HomeServerlet extends HttpServlet {
 						
 						request.getSession().setAttribute("items", items);
 						if(items!= null && items.size()>0) {
-							request.getSession().setAttribute("category", items.get(0).getType() + "'s " + items.get(0).getCategory());
+							request.getSession().setAttribute("category_name", items.get(0).getType() + "'s " + items.get(0).getCategory());
 						}
 						RequestDispatcher rd = request.getRequestDispatcher("itemsShow.jsp");
 						rd.forward(request, response);

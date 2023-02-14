@@ -37,20 +37,19 @@ public class ManagerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String search = request.getParameter("search");
 		String showByKey = "";
 
-		
-		if(search != null) {
+		if (search != null) {
 			String searchValue = request.getParameter("txtsearch");
 			System.out.println("search" + searchValue);
 			List<Item> itembyShoes = null;
 			request.getSession().setAttribute("showByKey", itembyShoes);
 			RequestDispatcher dd1 = request.getRequestDispatcher("MainProduct.jsp");
 			dd1.forward(request, response);
-		}else {
-			
+		} else {
+
 		}
 	}
 

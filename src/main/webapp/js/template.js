@@ -69,7 +69,22 @@ document.addEventListener("touchstart", function(){}, true);
 currentDirect = function(url){
 	let urlsplit = window.location.href.split("/");
 	let current = urlsplit[urlsplit.length - 1];
+	Newurl = url + "&currentUrl=" + urlsplit[urlsplit.length - 1].replace("?", "&").replace("#", "");
+	//alert(Newurl);
 	window.location.href = url + "&currentUrl=" + urlsplit[urlsplit.length - 1].replace("?", "&").replace("#", "");
+}
+
+
+bagClick = function(){
+	let User = document.getElementById("userName");
+	if(User == null){
+		alert("Please Login or Register for use your Bag")
+		window.location.href = window.location.href.replace("#", "");
+	    let urlsplit = window.location.href.split("/");
+	    window.location.href = "loginRegister.jsp?login=1&currentUrl=OrderServlet&bag=bag";
+	}else{
+		window.location.href = "OrderServlet?bag=bag";
+	}
 }
 
 

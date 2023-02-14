@@ -20,30 +20,35 @@ import dao.ManagerItemDao;
 public class ItemServerlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ManagerItemDao itemDao;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ItemServerlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ItemServerlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("id");
-		List<Item> items =  itemDao.getInstance().getItemsWithWhereClause("WHERE item.item_id = " + id);
+		List<Item> items = itemDao.getInstance().getItemsWithWhereClause("WHERE item.item_id = " + id);
 		request.getSession().setAttribute("item", items.get(0));
 		RequestDispatcher rd = request.getRequestDispatcher("itemDetail.jsp");
 		rd.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

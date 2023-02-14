@@ -61,14 +61,14 @@
 		            <% }else {%>
 		            <li class="nav-item">
 		            <div class="dropdown" style="float:right;">   
-		              <a class="dropbtn" href="ShowinforUser.jsp">hi, <%=user.getUser_name() %></a>
+		              <a class="dropbtn" href="ShowinforUser.jsp" id="userName">hi, <%=user.getUser_name() %></a>
 		              <div class="dropdown-content">
 		                <div class="drop-header-title">Account</div>
 		                <a href="ShowinforUser.jsp">Profile</a>
 		                <a href="#">Order</a>
 		                <a href="#">Favourite</a>
 		                <a href="#">Settings</a>
-		                <a href="#" onclick="currentDirect('CheckLoginServlet?mod=Logout')">Log Out</a>
+		                <a href="CheckLoginServlet?mod=hardLogout">Log Out</a>
 		              </div>
 		            </div>
 		          </li>
@@ -102,7 +102,7 @@
 		          	<input type="submit" id="search-submit" />
 	        	</form>
 	      	</li>
-		   	<a class="order" href="OrderServlet?bag=bag">
+		   	<a class="order" href="#" onclick="bagClick()">
 		    	<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
 		        	<path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
 		      	</svg>
@@ -151,43 +151,42 @@
                 <span class="sub_title">Bag</span>
                 <form id="form_checkout" action="OrderServlet?order=checkout" method="post">
 	                <div class="list_orders">	                    
-	                        <% List<OrderDetail> orderDetails = (List<OrderDetail>)request.getSession().getAttribute("ordeDetails"); %>
-	                        <%if(orderDetails != null){ %>
-	                        <%for(int i = 0; i < orderDetails.size(); i++) { %>
-	                        <div class="order_item">
-	                        <div class="item item_img">
-	                            <img src="<%= orderDetails.get(i).getImage() %>"
-	                                alt="">
-	                        </div>
-	                        <div class="item item_infor">
-	                            <span class="infor item_name"><%= orderDetails.get(i).getName()  %></span>
-	                            <span class="infor item_category"><%= orderDetails.get(i).getCategory() %></span>
-	                            <span class="infor item_color"><%= orderDetails.get(i).getColor() %></span>
-	                            <div class="infor item_choose">
-	                                <span class="item_size"><%= orderDetails.get(i).getSize() %></span>
-	                                <span class="item_quantity"><%= orderDetails.get(i).getQuantity() %></span>
-	                            </div>
-	                            <div class="infor sub_options">
-	                                <a href="#"><i class="fa-regular fa-heart"></i></a>
-	                                <a href="#"><i class="fa-regular fa-trash-can"></i></a>
-	                            </div>
-	                        </div>
-	                        <div class="item item_price">
-	                           <div class="item item_price">
-	                                <div class="price"><%= orderDetails.get(i).getPrice() %> <span>₫</span></div>
-	                                <div class="check-box">
-	                                    <input class="checkbox-item" type="checkbox" name="txtcheckbox" value="<%= orderDetails.get(i).getOrder_detail_id() %>" price="<%= orderDetails.get(i).getPrice() %>" onchange="checkBoxClick()">
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                        
-	                        <%} %>
-	                        <%} %>
-	                        
-	                    </div>
-	                    	               
-	                </div>
+                  		<% List<OrderDetail> orderDetails = (List<OrderDetail>)request.getSession().getAttribute("ordeDetails"); %> 
+                  		<%if(orderDetails != null){ %>
+                  			<%for(int i = 0; i < orderDetails.size(); i++) { %>
+                  		<div class="order_item">
+                  			<div class="item item_img">
+                      			<img src="<%= orderDetails.get(i).getImage() %>"alt="">
+                  			</div>
+                  		<div class="item item_infor">
+	                      <span class="infor item_name"><%= orderDetails.get(i).getName()  %></span>
+	                      <span class="infor item_category"><%= orderDetails.get(i).getCategory() %></span>
+	                      <span class="infor item_color"><%= orderDetails.get(i).getColor() %></span>
+                      	<div class="infor item_choose">
+                          <span class="item_size"><%= orderDetails.get(i).getSize() %></span>
+                          <span class="item_quantity"><%= orderDetails.get(i).getQuantity() %></span>
+                      	</div>
+	                      <div class="infor sub_options">
+	                          <a href="#"><i class="fa-regular fa-heart"></i></a>
+	                          <a href="#"><i class="fa-regular fa-trash-can"></i></a>
+	                      </div>
+                  		</div>
+                  	<div class="item item_price">
+                     <div class="item item_price">
+                          <div class="price"><%= orderDetails.get(i).getPrice() %> <span>₫</span></div>
+                          <div class="check-box">
+                              <input class="checkbox-item" type="checkbox" name="txtcheckbox" value="<%= orderDetails.get(i).getOrder_detail_id() %>" price="<%= orderDetails.get(i).getPrice() %>" onchange="checkBoxClick()">
+                          </div>
+                      </div>
+                  </div>
+              </div>          
+                  <%} %>
+               <%}if(orderDetails.size() == 0){ %>  
+               	<div>
+                  	<span>There are no items in your Bag.</span>
+             	</div>
+               <%} %>     	               
+          </div>
                 </form>
             </div>
             <div class="favourites_item">

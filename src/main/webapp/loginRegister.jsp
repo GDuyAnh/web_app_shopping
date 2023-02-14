@@ -17,15 +17,12 @@
 		String id = request.getParameter("id");
 		String category = request.getParameter("category");
 		String type = request.getParameter("type");
-		
-		request.getSession().setAttribute("currentUrl", currentUrl);
-		request.getSession().setAttribute("id", id);
-		request.getSession().setAttribute("category", category);
-		request.getSession().setAttribute("type", type);
+		String bag = request.getParameter("bag");	
 	%>
     <div class="main">    
         <div class="container a-container" id="a-container">
-            <form class="form" id="a-form" method="post" action="CheckLoginServlet?mod=Register">
+        <%String tmp = "&currentUrl=" + currentUrl + (id!=null ? "&id="+id :"") + (category!=null ? "&category="+category :"") + (type!=null ? "&type="+type :"") + (bag!=null ? "&bag="+bag :"");%>
+            <form class="form" id="a-form" method="post" action="CheckLoginServlet?mod=Register<%=tmp%>">
                 <h2 class="form_title title">Create Account</h2>
                 <div class="form__icons">
                     <i class="fa-brands fa-facebook form__icon"></i>
@@ -58,7 +55,7 @@
             </form>
         </div>
         <div class="container b-container" id="b-container">
-            <form class="form" id="b-form" method="post" action="CheckLoginServlet?mod=Login">																				
+            <form class="form" id="b-form" method="post" action="CheckLoginServlet?mod=Login<%=tmp%>">																				
                 <h2 class="form_title title">Sign in to Website</h2>
                 <div class="form__icons">
                     <i class="fa-brands fa-facebook form__icon"></i>

@@ -34,16 +34,16 @@ public class CheckLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mod = request.getParameter("mod");
-		String currentUrl = (String)request.getSession().getAttribute("currentUrl");
-		String id = (String)request.getSession().getAttribute("id");
-		String type = (String)request.getSession().getAttribute("type");
-		String category = (String)request.getSession().getAttribute("category");
-		
+		String currentUrl = request.getParameter("currentUrl");
+		String id = request.getParameter("id");
+		String type = request.getParameter("type");
+		String category = request.getParameter("category");
+		String bag = request.getParameter("bag");
 		String Url = "";
 		if(currentUrl == null) {
 			Url = "home.jsp";
 		}else {
-			Url += currentUrl + "?" + (id != null ? "id=" + id + "&" : "") + (type != null ? "type=" + type + "&" : "")+ (category != null ? "category=" + category : "");
+			Url += currentUrl + "?" + (bag != null ? "bag=" + bag + "&" : "") + (id != null ? "id=" + id + "&" : "") + (type != null ? "type=" + type + "&" : "")+ (category != null ? "category=" + category : "");
 		}
 		List<User> users = new ArrayList<>();
 		if(mod != null) {
@@ -56,9 +56,7 @@ public class CheckLoginServlet extends HttpServlet {
 						.filter(o -> (o.getMail().equals(email) && o.getPassword().equals(password)))
 						.toList();
 				
-				if(users.size() != 0) {
-			    	System.out.println(users);
-			    	
+				if(users.size() != 0) {		
 			    	request.getSession().setAttribute("user", users.get(0));
 			    	response.sendRedirect(Url);
 			    	
@@ -67,6 +65,9 @@ public class CheckLoginServlet extends HttpServlet {
 				request.getSession().setAttribute("user", null);
 				//request.getSession().setMaxInactiveInterval(1);
 				response.sendRedirect(Url);
+			}else if(mod.equals("hardLogout")) {
+				request.getSession().setAttribute("user", null);
+				response.sendRedirect("home.jsp");
 			}
 		}
 	}
